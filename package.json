@@ -1,0 +1,57 @@
+{
+  "name": "@igo2/base-api",
+  "version": "0.1.0",
+  "description": "Base Api",
+  "main": "build/index.js",
+  "files": [
+    "build",
+    "package.json",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "build": "rimraf build && npm run tsc",
+    "lint": "tslint -c tslint.json -t prose src/**/*.ts",
+    "test": "npm run lint",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "version": "npm run changelog && git add -A CHANGELOG.md",
+    "postversion": "git push --follow-tags"
+  },
+  "keywords": [],
+  "dependencies": {
+    "boom": "^7.3.0",
+    "catbox-redis": "^4.2.4",
+    "elastic-apm-node": "^2.15.0",
+    "geojson": "^0.5.0",
+    "good": "^8.1.2",
+    "hapi": "^18.1.0",
+    "joi": "^14.3.1",
+    "json-stringify-safe": "^5.0.1",
+    "pg": "7.9.0",
+    "nconf": "^0.10.0",
+    "nodemailer": "^6.1.0",
+    "sequelize": "^5.6.1",
+    "xss": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/boom": "7.2.1",
+    "@types/geojson": "^7946.0.7",
+    "@types/hapi": "^18.0.1",
+    "@types/joi": "^14.3.2",
+    "@types/json-stringify-safe": "^5.0.0",
+    "@types/nodemailer": "^4.6.7",
+    "@types/nconf": "0.10.0",
+    "@types/node": "^11.13.4",
+    "@types/sequelize": "^4.27.46",
+    "conventional-changelog-cli": "^2.0.12",
+    "hapi-dev-errors": "^3.2.3",
+    "rimraf": "^2.6.3",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  }
+}

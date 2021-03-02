@@ -1,0 +1,87 @@
+import * as Hapi from 'hapi';
+import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
+import { failAction } from '../utils';
+import { IServerConfiguration } from '../configurations';
+import { database } from './database';
+
+export interface IRoute {
+  init(server: Hapi.Server): void;
+}
+
+const loadPlugins = (configs: IServerConfiguration, server: Hapi.Server) => {
+  //  Setup Hapi Plugins
+  const plugins: string[] = configs.plugins || [];
+  const pluginOptions: IPluginOptions = configs.pluginsOptions || {};
+  pluginOptions.database = database;
+  pluginOptions.configs = configs;
+
+  plugins.forEach((pluginName: string) => {
+    const plugin: IPlugin = getPlugin(pluginName);
+    const version = plugin.version;
+    const name = plugin.name;
+    server.log('info', `Register Plugin ${name} v${version}`);
+    plugin.register(server, pluginOptions);
+  });
+  server.log('info', 'Plugins loaded');
+};
+
+const loadRoutes = (configs: IServerConfiguration, server: Hapi.Server) => {
+  server.log('info', 'Routes loading');
+  const routes: string[] = configs.routes || [];
+  routes.forEach((routeName: string) => {
+    console.log(__dirname)
+    const Route: IRoute = require('../../../configurations' + routeName);
+    Route.init(server);
+  });
+  server.log('info', 'Routes loaded', Date.now());
+};
+
+
+let serverHapi: Hapi.Server;
+export async function init(configs: IServerConfiguration): Promise<Hapi.Server> {
+  const port = process.env.port || configs.port;
+  let redisCacheConfig: Hapi.ServerOptionsCache;
+  if (configs.cache && configs.cache.engine === 'redis') {
+    redisCacheConfig = {
+      provider: {
+        constructor: require('catbox-redis'),
+        options: {
+          host: configs.cache.host,
+          partition: configs.cache.partition
+        } as any
+      }
+    };
+  }
+
+  serverHapi = new Hapi.Server({
+    port: port,
+    host: 'localhost',
+    router: {
+      stripTrailingSlash: true
+    },
+    cache: redisCacheConfig,
+    routes: {
+      cache: {
+        expiresIn: 86400 * 1000 // 24 hour
+      },
+      validate: {
+        failAction: failAction(),
+        options: {
+          stripUnknown: true
+        }
+      }
+    }
+  });
+
+  database.initDatabase(serverHapi);
+  await loadPlugins(configs, serverHapi);
+  await loadRoutes(configs, serverHapi);
+  if (process.send) {
+    process.send('ready');
+  }
+  return serverHapi;
+}
+
+export function getServer() {
+  return serverHapi;
+}
