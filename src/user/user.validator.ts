@@ -14,6 +14,13 @@ export class UserValidator {
     }).unknown()
   );
 
+  static authenticateValidator(value: object, _options: Joi.ValidationOptions) {
+      const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+      if (valid.error) {
+        throw Boom.unauthorized('Must be authenticated');
+      }
+    };
+
   static async adminValidator(value: object, _options: Joi.ValidationOptions) {
     const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
     if (valid.error) {

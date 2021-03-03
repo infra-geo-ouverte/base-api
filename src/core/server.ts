@@ -62,7 +62,8 @@ export class Server {
       port: port,
       host: 'localhost',
       router: {
-        stripTrailingSlash: true
+        stripTrailingSlash: true,
+        isCaseSensitive: false
       },
       cache: redisCacheConfig,
       routes: {
@@ -82,9 +83,6 @@ export class Server {
     await loadPlugins(configs, serverHapi);
     await loadRoutes(configs, serverHapi);
 
-    if (process.send) {
-      process.send('ready');
-    }
     return serverHapi;
   }
 

@@ -19,8 +19,8 @@ export class Config {
     });
   }
 
-  static getConfig() {
-    return configs;
+  static getConfig(key?: string) {
+    return key ? configs?.get(key) : configs;
   }
 
   static getBasePath() {
