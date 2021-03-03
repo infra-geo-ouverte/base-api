@@ -31,7 +31,9 @@ export class IDatabase {
     const dbString: IDBStringConf = dbConfigs as IDBStringConf;
     const dbConf: IDBConf = dbConfigs as IDBConf;
 
-    if (dbString.connectionString) {
+    if (!dbConfigs) {
+      return;
+    } else if (dbString.connectionString) {
       this.sequelize = new Sequelize(dbString.connectionString);
     } else if (dbConf.dialect === 'postgres') {
       const dbPG: IPostgresConf = dbConfigs as IPostgresConf;
