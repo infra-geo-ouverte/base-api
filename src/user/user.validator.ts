@@ -1,0 +1,41 @@
+import * as Joi from 'joi';
+import * as Boom from 'boom';
+
+export class UserValidator {
+  static userValidator = Joi.object({
+    'x-consumer-id': Joi.string().required(),
+    'x-consumer-username': Joi.string().required()
+  }).unknown();
+
+  static notAnonymousValidator = UserValidator.userValidator.concat(
+    Joi.object({
+      'x-anonymous-consumer': Joi.boolean().forbidden()
+    }).unknown()
+  );
+
+  static async adminValidator(value: object, _options: Joi.ValidationOptions) {
+    const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+    if (valid.error) {
+      throw Boom.unauthorized('Must be authenticated');
+    }
+
+    const profils = value['x-consumer-groups'];
+    if (!profils || !profils.split(', ').includes('admin')) {
+      throw Boom.forbidden('Must be administrator');
+    }
+  }
+
+  static groupValidator(value: object, _options: Joi.ValidationOptions, groups = []) {
+    const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+
+    if (valid.error) {
+      throw Boom.unauthorized('Must be authenticated');
+    }
+
+    const profilsStr = value['x-consumer-groups'] || '';
+    const profils = profilsStr.split(', ');
+    if (!profils.some((p: string) => groups.includes(p))) {
+      throw Boom.forbidden("You don't have permissions");
+    }
+  }
+}

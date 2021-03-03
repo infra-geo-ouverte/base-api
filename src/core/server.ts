@@ -1,7 +1,7 @@
 import * as Hapi from 'hapi';
 import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
 import { failAction } from '../utils';
-import { IServerConfiguration } from '../configurations';
+import { Config, IServerConfiguration } from '../configurations';
 import { database } from './database';
 
 export interface IRoute {
@@ -29,59 +29,74 @@ const loadRoutes = (configs: IServerConfiguration, server: Hapi.Server) => {
   server.log('info', 'Routes loading');
   const routes: string[] = configs.routes || [];
   routes.forEach((routeName: string) => {
-    console.log(__dirname)
-    const Route: IRoute = require('../../../configurations' + routeName);
+    const Route: IRoute = require(`${Config.getBasePath()}/${routeName}`);
     Route.init(server);
   });
   server.log('info', 'Routes loaded', Date.now());
 };
 
-
 let serverHapi: Hapi.Server;
-export async function init(configs: IServerConfiguration): Promise<Hapi.Server> {
-  const port = process.env.port || configs.port;
-  let redisCacheConfig: Hapi.ServerOptionsCache;
-  if (configs.cache && configs.cache.engine === 'redis') {
-    redisCacheConfig = {
-      provider: {
-        constructor: require('catbox-redis'),
-        options: {
-          host: configs.cache.host,
-          partition: configs.cache.partition
-        } as any
-      }
-    };
+
+export class Server {
+
+  static getServer() {
+    return serverHapi;
   }
 
-  serverHapi = new Hapi.Server({
-    port: port,
-    host: 'localhost',
-    router: {
-      stripTrailingSlash: true
-    },
-    cache: redisCacheConfig,
-    routes: {
-      cache: {
-        expiresIn: 86400 * 1000 // 24 hour
+  static async init(configs: IServerConfiguration): Promise<Hapi.Server> {
+    const port = process?.env?.port || configs.port;
+    let redisCacheConfig: Hapi.ServerOptionsCache;
+    if (configs.cache && configs.cache.engine === 'redis') {
+      redisCacheConfig = {
+        provider: {
+          constructor: require('catbox-redis'),
+          options: {
+            host: configs.cache.host,
+            partition: configs.cache.partition
+          } as any
+        }
+      };
+    }
+
+    serverHapi = new Hapi.Server({
+      port: port,
+      host: 'localhost',
+      router: {
+        stripTrailingSlash: true
       },
-      validate: {
-        failAction: failAction(),
-        options: {
-          stripUnknown: true
+      cache: redisCacheConfig,
+      routes: {
+        cache: {
+          expiresIn: 86400 * 1000 // 24 hour
+        },
+        validate: {
+          failAction: failAction(),
+          options: {
+            stripUnknown: true
+          }
         }
       }
+    });
+
+    database.initDatabase(serverHapi);
+    await loadPlugins(configs, serverHapi);
+    await loadRoutes(configs, serverHapi);
+
+    if (process.send) {
+      process.send('ready');
     }
-  });
-
-  database.initDatabase(serverHapi);
-  await loadPlugins(configs, serverHapi);
-  await loadRoutes(configs, serverHapi);
-  if (process.send) {
-    process.send('ready');
+    return serverHapi;
   }
-  return serverHapi;
-}
 
-export function getServer() {
-  return serverHapi;
+  static async start() {
+    const server = await Server.init(Config.getServerConfig());
+    await server.start();
+    server.log('info', `Running environment ${process.env.NODE_ENV || 'dev'}`);
+    server.log('info', `Server running at: ${server.info.uri}`);
+
+    process.on('unhandledRejection', err => {
+      console.error(err);
+      process.exit(1);
+    });
+  }
 }

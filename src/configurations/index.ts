@@ -1,22 +1,5 @@
 import * as nconf from 'nconf';
 
-// Read Configurations
-let configs: nconf.Provider;
-export function readConfig(path) {
-  return configs =  new nconf.Provider({
-    env: true,
-    argv: true,
-    store: {
-      type: 'file',
-      file: path
-    }
-  });
-}
-
-export function getConfig() {
-  return configs;
-}
-
 export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;
@@ -64,14 +47,40 @@ export interface IMailConfiguration {
   to?: string;
 }
 
-export function getDatabaseConfig(): IDataConfiguration {
-  return configs?.get('database');
-}
+let configs: nconf.Provider;
+let path: string;
 
-export function getServerConfig(): IServerConfiguration {
-  return configs?.get('server');
-}
+export class Config {
 
-export function getMailConfig(): IMailConfiguration {
-  return configs?.get('mail');
+  static readConfig(basePath: string, relPath: string) {
+    path = basePath;
+    configs =  new nconf.Provider({
+      env: true,
+      argv: true,
+      store: {
+        type: 'file',
+        file: basePath + '/' + relPath
+      }
+    });
+  }
+
+  static getConfig() {
+    return configs;
+  }
+
+  static getBasePath() {
+    return path;
+  }
+
+  static getDatabaseConfig(): IDataConfiguration {
+    return configs?.get('database');
+  }
+
+  static getServerConfig(): IServerConfiguration {
+    return configs?.get('server');
+  }
+
+  static getMailConfig(): IMailConfiguration {
+    return configs?.get('mail');
+  }
 }

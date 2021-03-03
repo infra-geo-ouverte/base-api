@@ -1,7 +1,7 @@
 import * as Hapi from 'hapi';
 import * as Boom from 'boom';
 import { Sequelize, QueryOptions as SequelizeQueryOptions } from 'sequelize';
-import * as Configs from '../configurations';
+import { Config, IDatabaseConfiguration, IDBStringConfiguration, IPostgresConfiguration, ISqliteConfiguration } from '../configurations';
 
 export interface QueryOptions extends SequelizeQueryOptions {
   request?: Hapi.Request;
@@ -15,12 +15,12 @@ export class IDatabase {
   }
 
   initDatabase(server: Hapi.Server) {
-    const dbConfigs = Configs.getDatabaseConfig();
+    const dbConfigs = Config.getDatabaseConfig();
 
-    type IDBConf = Configs.IDatabaseConfiguration;
-    type IDBStringConf = Configs.IDBStringConfiguration;
-    type IPostgresConf = Configs.IPostgresConfiguration;
-    type ISqliteConf = Configs.ISqliteConfiguration;
+    type IDBConf = IDatabaseConfiguration;
+    type IDBStringConf = IDBStringConfiguration;
+    type IPostgresConf = IPostgresConfiguration;
+    type ISqliteConf = ISqliteConfiguration;
 
     const dbString: IDBStringConf = dbConfigs as IDBStringConf;
     const dbConf: IDBConf = dbConfigs as IDBConf;

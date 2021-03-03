@@ -1,5 +1,5 @@
 import * as nodemailer from 'nodemailer';
-import * as Configs from '../configurations';
+import { Config } from '../configurations';
 
 export interface Mail {
   to?: string;
@@ -8,7 +8,7 @@ export interface Mail {
 }
 
 export async function sendMail(mail: Mail) {
-  const mailConfig = Configs.getMailConfig();
+  const mailConfig = Config.getMailConfig();
   if (!mailConfig) {
     console.error('Mail config is not defined');
     return;
