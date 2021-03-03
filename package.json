@@ -5,19 +5,21 @@
   "main": "build/index.js",
   "files": [
     "build",
+    "package-lock.json",
     "package.json",
     "README.md",
     "CHANGELOG.md"
   ],
   "scripts": {
     "tsc": "tsc",
-    "build": "rimraf build && npm run tsc",
+    "build": "rimraf build && npm run tsc && npm run copyFiles",
+    "copyFiles": "cp -t ./build/. README.md CHANGELOG.md package.json package-lock.json",
     "lint": "tslint -c tslint.json -t prose src/**/*.ts",
     "test": "npm run lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "preversion": "npm run test && rimraf ./dist && npm run build",
+    "preversion": "npm run test && npm run build",
     "version": "npm run changelog && git add -A CHANGELOG.md",
-    "postversion": "git push && git push --tags && npm run publish"
+    "postversion": "git push --follow-tags && npm publish"
   },
   "keywords": [],
   "dependencies": {
