@@ -1,4 +1,4 @@
-import { IPlugin } from '../interfaces';
+import { IPlugin } from '../plugin.interface';
 import * as Hapi from 'hapi';
 
 export default (): IPlugin => {

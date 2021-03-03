@@ -1,4 +1,4 @@
-import { IPlugin } from './interfaces';
+import { IPlugin } from './plugin.interface';
 import { default as apm} from './apm';
 import { default as devErrors} from './dev-errors';
 import { default as logger} from './logger';
@@ -21,4 +21,4 @@ export * from './apm';
 export * from './dev-errors';
 export * from './logger';
 export * from './sanitizer';
-export * from './interfaces';
+export * from './plugin.interface';

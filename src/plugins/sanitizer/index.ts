@@ -1,6 +1,6 @@
 import * as Hapi from 'hapi';
 
-import { IPlugin, IPluginOptions } from '../interfaces';
+import { IPlugin, IPluginOptions } from '../plugin.interface';
 import { Sanitizer } from './sanitizer';
 import {
   defaults,

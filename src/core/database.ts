@@ -2,9 +2,11 @@ import * as Hapi from 'hapi';
 import * as Boom from 'boom';
 import { Sequelize, QueryOptions as SequelizeQueryOptions } from 'sequelize';
 import { Config, IDatabaseConfiguration, IDBStringConfiguration, IPostgresConfiguration, ISqliteConfiguration } from '../configurations';
+import { log } from '../utils/log';
 
 export interface QueryOptions extends SequelizeQueryOptions {
   request?: Hapi.Request;
+  requestId?: string;
 }
 
 export class IDatabase {
@@ -33,13 +35,19 @@ export class IDatabase {
         host: dbPG.host,
         port: dbPG.port,
         dialect: dbPG.dialect,
-        logging: (log: string, options) => {
+        logging: (data: string, options) => {
           const request = (options as QueryOptions).request;
-          log = log.replace(/\s\s+/g, ' ');
+          const requestId = (options as QueryOptions).requestId;
+
+          data = data.replace(/\s\s+/g, ' ');
+          const tags = ['info', 'database'];
+
           if (request) {
-            request.log(['info', 'database'], log);
+            request.log(tags, data);
+          } else if (requestId) {
+            log(tags, data, requestId);
           } else {
-            server.log(['info', 'database'], log);
+            server.log(tags, data);
           }
         },
         pool: {

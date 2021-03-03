@@ -1,4 +1,4 @@
-import { IPlugin, IPluginOptions } from '../interfaces';
+import { IPlugin, IPluginOptions } from '../plugin.interface';
 import * as Hapi from 'hapi';
 
 import { GoodConsole } from './logger';
