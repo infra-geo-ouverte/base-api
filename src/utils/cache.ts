@@ -16,10 +16,10 @@ function init() {
   const cacheRedisOpts = {
       maxRetriesPerRequest: 3
   };
-  
+
   redisClient = cacheConfig && cacheConfig.engine === 'redis' ?
     new Redis({}, Object.assign({host: cacheConfig.host, port: cacheConfig.port}, cacheRedisOpts)) : undefined;
-  
+
   redisClientReplicats = cacheConfig && cacheConfig.engine === 'redis' && cacheConfig.replicats ?
     cacheConfig.replicats
       .filter(r => r.enabled !== false)
