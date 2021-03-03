@@ -25,15 +25,15 @@ export default (): IPlugin => {
         'onPreHandler',
         (request: Hapi.Request, h: Hapi.ResponseToolkit) => {
           // request.route.fingerprint
+          let path = request.route.path;
+          if (apmOptions.pathReplace === true) {
+            const matchParams = path.match(/\{\w+\}/g) || [];
+            for (const param of matchParams) {
+              path = path.replace(param, request.params[param.substring(1, param.length-1)]);
+            }
+          }
           const routeApm =
-            request.route.method.toUpperCase() +
-            ' ' +
-            request.route.path
-              .replace('{baseTerritoire}', request.params.baseTerritoire)
-              .replace(
-                '{searchedTerritoire}',
-                request.params.searchedTerritoire
-              );
+            request.route.method.toUpperCase() + ' ' + path;
 
           apm.setTransactionName(routeApm);
 
