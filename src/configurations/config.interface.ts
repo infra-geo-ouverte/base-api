@@ -2,6 +2,12 @@ export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;
   partition: string;
+  port?: string;
+  replicats?: [{
+    host: string;
+    port?: string;
+    enabled?: boolean;
+  }];
 }
 
 export interface IServerConfiguration {

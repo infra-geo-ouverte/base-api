@@ -93,6 +93,9 @@ export class Server {
     await server.start();
     server.log('info', `Running environment ${process.env.NODE_ENV || 'dev'}`);
     server.log('info', `Server running at: ${server.info.uri}`);
+    if (process.send) {
+      process.send('ready');
+    }
 
     process.on('unhandledRejection', err => {
       console.error(err);

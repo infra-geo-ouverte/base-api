@@ -1,6 +1,9 @@
 import * as Hapi from 'hapi';
 import * as Boom from 'boom';
-import { Sequelize, QueryOptions as SequelizeQueryOptions } from 'sequelize';
+import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
+import { Sequelize, Model } from 'sequelize-typescript';
+import * as camelcase from 'camelcase';
+
 import { Config, IDatabaseConfiguration, IDBStringConfiguration, IPostgresConfiguration, ISqliteConfiguration } from '../configurations';
 import { log } from '../utils/log';
 
@@ -10,7 +13,8 @@ export interface QueryOptions extends SequelizeQueryOptions {
 }
 
 export class IDatabase {
-  private sequelize: Sequelize;
+  public sequelize: Sequelize;
+  public models: { [key: string]: typeof Model };
 
   query(sql: string, options?: QueryOptions) {
     return this.sequelize.query(sql, options);
@@ -73,6 +77,17 @@ export class IDatabase {
         throw Boom.badRequest('Bad Database Request');
       });
     };
+
+        // Add models
+    this.sequelize.addModels([`${Config.getBasePath()}'/**/*.model.*`], (filename, member) => {
+      const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
+        pascalCase: true
+      });
+      return className === member;
+    });
+
+    // Create tables if not exist
+    this.sequelize.sync();
   }
 }
 

@@ -4,7 +4,8 @@ import * as Boom from 'boom';
 export class UserValidator {
   static userValidator = Joi.object({
     'x-consumer-id': Joi.string().required(),
-    'x-consumer-username': Joi.string().required()
+    'x-consumer-username': Joi.string().required(),
+    'x-consumer-groups': Joi.string().allow('')
   }).unknown();
 
   static notAnonymousValidator = UserValidator.userValidator.concat(

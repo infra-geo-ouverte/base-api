@@ -23,6 +23,7 @@
   "keywords": [],
   "dependencies": {
     "boom": "^7.3.0",
+    "camelcase": "^5.3.1",
     "catbox-redis": "^4.2.4",
     "elastic-apm-node": "^2.15.0",
     "geojson": "^0.5.0",
@@ -30,6 +31,7 @@
     "handlebars": "^4.1.1",
     "hapi": "^18.1.0",
     "hapi-dev-errors": "^3.2.3",
+    "ioredis": "^4.16.2",
     "joi": "^14.3.1",
     "json-stringify-safe": "^5.0.1",
     "pg": "7.9.0",
@@ -37,6 +39,7 @@
     "nodemailer": "^6.1.0",
     "md5": "^2.2.1",
     "sequelize": "^5.6.1",
+    "sequelize-typescript": "^1.0.0-alpha.9",
     "xss": "^1.0.6"
   },
   "devDependencies": {

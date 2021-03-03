@@ -5,6 +5,10 @@ export interface Mail {
   to?: string;
   subject: string;
   text: string;
+  attachments?: {
+    filename: string;
+    content: string;
+  }[];
 }
 
 export async function sendMail(mail: Mail) {
@@ -23,7 +27,8 @@ export async function sendMail(mail: Mail) {
     from: mailConfig.from,
     to: mail.to || mailConfig.to,
     subject: mail.subject,
-    text: mail.text
+    text: mail.text,
+    attachments: mail.attachments
   };
 
   const info = await transporter
