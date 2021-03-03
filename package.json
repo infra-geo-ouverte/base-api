@@ -15,8 +15,9 @@
     "lint": "tslint -c tslint.json -t prose src/**/*.ts",
     "test": "npm run lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "preversion": "npm run test && rimraf ./dist && npm run build",
     "version": "npm run changelog && git add -A CHANGELOG.md",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push && git push --tags && npm run publish"
   },
   "keywords": [],
   "dependencies": {
