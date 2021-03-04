@@ -91,7 +91,7 @@ export class IDatabase {
     if (dbConfigs.models) {
       const models: string[] = dbConfigs.models;
       models.forEach((modelName: string) => {
-        this.models[modelName] = this.sequelize['import'](`${Config.getBasePath()}/${modelName}/${modelName}.model`);
+        this.models[modelName] = this.sequelize.import(`${Config.getBasePath()}/${modelName}/${modelName}.model`);
       });
     }
 
