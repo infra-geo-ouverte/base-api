@@ -1,3 +1,12 @@
+## [0.1.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/0.1.4...0.1.5) (2021-03-04)
+
+
+### Bug Fixes
+
+* **database:** no database ([64a26e8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/64a26e896522179fe260d739647833f2f350ee88))
+
+
+
 ## [0.1.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/0.1.3...0.1.4) (2021-03-03)
 
 
