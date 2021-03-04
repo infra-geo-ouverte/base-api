@@ -21,6 +21,7 @@ export interface IServerConfiguration {
 
 export interface IDatabaseConfiguration {
   dialect?: 'sqlite' | 'postgres';
+  models?: string[];
 }
 
 export interface ISqliteConfiguration extends IDatabaseConfiguration {

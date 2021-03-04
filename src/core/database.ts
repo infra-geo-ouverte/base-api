@@ -14,7 +14,7 @@ export interface QueryOptions extends SequelizeQueryOptions {
 
 export class IDatabase {
   public sequelize: Sequelize;
-  public models: { [key: string]: typeof Model };
+  public models: { [key: string]: typeof Model } = {};
 
   query(sql: string, options?: QueryOptions) {
     return this.sequelize.query(sql, options);
@@ -87,6 +87,13 @@ export class IDatabase {
       });
       return className === member;
     });
+
+    if (dbConfigs.models) {
+      const models: string[] = dbConfigs.models;
+      models.forEach((modelName: string) => {
+        this.models[modelName] = this.sequelize['import'](`${Config.getBasePath()}/${modelName}/${modelName}.model`);
+      });
+    }
 
     // Create tables if not exist
     this.sequelize.sync();
