@@ -1,3 +1,12 @@
+# [1.0.0-alpha.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/0.1.5...1.0.0-alpha.0) (2021-03-05)
+
+
+### Features
+
+* **upgrade:** all ibs ([cc7987d](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/cc7987d1d066df75f2579bc51e1346edd1894d12))
+
+
+
 ## [0.1.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/0.1.4...0.1.5) (2021-03-04)
 
 
