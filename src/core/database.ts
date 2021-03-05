@@ -1,7 +1,7 @@
-import * as Hapi from 'hapi';
-import * as Boom from 'boom';
+import * as Hapi from '@hapi/hapi';
+import * as Boom from '@hapi/boom';
 import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
-import { Sequelize, Model } from 'sequelize-typescript';
+import { Sequelize } from 'sequelize-typescript';
 import * as camelcase from 'camelcase';
 
 import { Config, IDatabaseConfiguration, IDBStringConfiguration, IPostgresConfiguration, ISqliteConfiguration } from '../configurations';
@@ -14,7 +14,6 @@ export interface QueryOptions extends SequelizeQueryOptions {
 
 export class IDatabase {
   public sequelize: Sequelize;
-  public models: { [key: string]: typeof Model } = {};
 
   query(sql: string, options?: QueryOptions) {
     return this.sequelize.query(sql, options);
@@ -87,13 +86,6 @@ export class IDatabase {
       });
       return className === member;
     });
-
-    if (dbConfigs.models) {
-      const models: string[] = dbConfigs.models;
-      models.forEach((modelName: string) => {
-        this.models[modelName] = this.sequelize.import(`${Config.getBasePath()}/${modelName}/${modelName}.model`);
-      });
-    }
 
     // Create tables if not exist
     this.sequelize.sync();

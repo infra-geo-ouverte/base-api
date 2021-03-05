@@ -1,27 +1,26 @@
 import * as Joi from 'joi';
-import * as Boom from 'boom';
-import { GeometryObject } from 'geojson';
+import * as Boom from '@hapi/boom';
 
 let JoiPlus = Joi.extend((joi: Joi.Root) => ({
   base: joi.array(),
-  name: 'stringArray',
-  coerce: (value: any, _state: Joi.State, _options: Joi.ObjectSchema) => {
+  type: 'stringArray',
+  coerce: (value: any, _helper: Joi.CustomHelpers) => {
     if (typeof value !== 'string') {
-      return value;
+      return { value };
     }
     const delimiter = value.search(';') === -1 ? ',' : ';';
-    return value.split(delimiter).map((r) => r.trim());
+    return { value: value.split(delimiter).map((r) => r.trim()) };
   },
 }));
 
 JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
   base: joi.array().items(joi.array().length(2).items(Joi.number())),
-  name: 'coordinates',
-  coerce: (value: any, _state: Joi.State, _options: Joi.ObjectSchema) => {
+  type: 'coordinates',
+  coerce: (value: any, _helper: Joi.CustomHelpers) => {
     if (typeof value !== 'string') {
-      return value.map((l: string) => l.split(','));
+      return { value: value.map((l: string) => l.split(',')) };
     }
-    return value.split(';').map((l) => l.split(','));
+    return { value: value.split(';').map((l) => l.split(',')) };
   },
 }));
 
@@ -33,10 +32,10 @@ JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
       .required(),
     coordinates: Joi.array()
       .required()
-      .items([
+      .items(
         Joi.number(),
         Joi.array().items(Joi.number(), Joi.array().items(Joi.number(), Joi.array().items(Joi.number()))),
-      ]),
+      ),
     crs: Joi.object()
       .optional()
       .keys({
@@ -46,16 +45,14 @@ JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
         }),
       }),
   }),
-  name: 'geojson',
-  coerce: (value: any, _state: Joi.State, _options: Joi.ObjectSchema) => {
-    let geojson: GeometryObject;
+  type: 'geojson',
+  coerce: (value: any, _helper: Joi.CustomHelpers) => {
+    let geojson: any;
     try {
       geojson = JSON.parse(JSON.stringify(value));
     } catch (e) {
       throw Boom.badRequest('Geojson is invalid');
     }
-    return geojson;
+    return { value: geojson };
   },
 }));
-
-export { JoiPlus };

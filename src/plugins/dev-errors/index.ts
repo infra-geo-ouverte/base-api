@@ -1,5 +1,5 @@
 import { IPlugin } from '../plugin.interface';
-import * as Hapi from 'hapi';
+import * as Hapi from '@hapi/hapi';
 
 export default (): IPlugin => {
   return {

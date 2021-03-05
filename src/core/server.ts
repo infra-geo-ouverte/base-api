@@ -1,4 +1,5 @@
-import * as Hapi from 'hapi';
+import * as Hapi from '@hapi/hapi';
+import * as Joi from '@hapi/joi';
 import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
 import { failAction } from '../utils';
 import { Config, IServerConfiguration } from '../configurations';
@@ -78,6 +79,8 @@ export class Server {
         }
       }
     });
+
+    serverHapi.validator(Joi)
 
     database.initDatabase(serverHapi);
     await loadPlugins(configs, serverHapi);

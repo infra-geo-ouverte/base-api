@@ -1,5 +1,5 @@
 import * as Joi from 'joi';
-import * as Boom from 'boom';
+import * as Boom from '@hapi/boom';
 
 export class UserValidator {
   static userValidator = Joi.object({
@@ -15,14 +15,14 @@ export class UserValidator {
   );
 
   static authenticateValidator(value: object, _options: Joi.ValidationOptions) {
-    const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+    const valid = Joi.object(UserValidator.notAnonymousValidator).validate(value);
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
     }
   }
 
   static async adminValidator(value: object, _options: Joi.ValidationOptions) {
-    const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+    const valid = Joi.object(UserValidator.notAnonymousValidator).validate(value);
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
     }
@@ -34,7 +34,7 @@ export class UserValidator {
   }
 
   static groupValidator(value: object, _options: Joi.ValidationOptions, groups = []) {
-    const valid = Joi.validate(value, UserValidator.notAnonymousValidator);
+    const valid = Joi.object(UserValidator.notAnonymousValidator).validate(value);
 
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
