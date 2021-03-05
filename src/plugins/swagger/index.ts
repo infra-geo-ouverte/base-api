@@ -19,8 +19,8 @@ export default (): IPlugin => {
       }
 
       await server.register([
-        require('inert'),
-        require('vision'),
+        require('@hapi/inert'),
+        require('@hapi/vision'),
         {
           plugin: require('hapi-swagger'),
           options: swaggerOptions

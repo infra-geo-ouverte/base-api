@@ -1,5 +1,6 @@
 import * as Joi from 'joi';
 import * as Boom from '@hapi/boom';
+import { GeometryObject } from 'geojson';
 
 let JoiPlus = Joi.extend((joi: Joi.Root) => ({
   base: joi.array(),
@@ -47,7 +48,7 @@ JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
   }),
   type: 'geojson',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
-    let geojson: any;
+    let geojson: GeometryObject;
     try {
       geojson = JSON.parse(JSON.stringify(value));
     } catch (e) {
