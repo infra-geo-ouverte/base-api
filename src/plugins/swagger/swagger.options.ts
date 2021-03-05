@@ -19,7 +19,6 @@ export const SwaggerSchema = Joi.object().keys({
     ),
   documentationPath: Joi.string().optional(),
   jsonPath: Joi.string().optional(),
-  lang: Joi.string().optional(),
   swaggerUIPath: Joi.string().optional()
 });
 
@@ -38,8 +37,5 @@ export interface SwaggerOptions {
   tags?: SwaggerTagOptions[];
   documentationPath?: string;
   jsonPath?: string;
-  lang?: string;
   swaggerUIPath?: string;
 }
-
-export const defaults: SwaggerOptions = {};

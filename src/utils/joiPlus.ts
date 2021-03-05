@@ -2,7 +2,7 @@ import * as Joi from 'joi';
 import * as Boom from '@hapi/boom';
 import { GeometryObject } from 'geojson';
 
-let JoiPlus = Joi.extend((joi: Joi.Root) => ({
+let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({
   base: joi.array(),
   type: 'stringArray',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
@@ -14,7 +14,7 @@ let JoiPlus = Joi.extend((joi: Joi.Root) => ({
   },
 }));
 
-JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
+JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   base: joi.array().items(joi.array().length(2).items(Joi.number())),
   type: 'coordinates',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
@@ -25,7 +25,7 @@ JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
   },
 }));
 
-JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
+JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   base: joi.object().keys({
     type: Joi.string()
       .insensitive()
@@ -57,3 +57,5 @@ JoiPlus = JoiPlus.extend((joi: Joi.Root) => ({
     return { value: geojson };
   },
 }));
+
+export const JoiPlus = JoiPlusTemp;

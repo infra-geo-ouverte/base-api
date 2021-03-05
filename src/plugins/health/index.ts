@@ -1,8 +1,6 @@
 import * as Hapi from '@hapi/hapi';
 
-import { Config } from '../../configurations';
 import { IPlugin, IPluginOptions } from '../plugin.interface';
-
 import { HealthOptions } from './health.options';
 
 export default (): IPlugin => {
@@ -11,7 +9,7 @@ export default (): IPlugin => {
     version: '1.0.0',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
       const opts: HealthOptions = Object.assign({
-        path: Config.getServerConfig().baseHref || '' + '/health',
+        path: (options?.global?.baseHref || '') + '/health',
         tags: ['health'],
         responses: {
           healthy: {
