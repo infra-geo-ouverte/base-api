@@ -14,14 +14,14 @@ export class UserValidator {
     }).unknown()
   );
 
-  static authenticateValidator(value: object, _options: Joi.ValidationOptions) {
+  static authenticateValidator(value: object, _options?: Joi.ValidationOptions) {
     const valid = UserValidator.notAnonymousValidator.validate(value);
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
     }
   }
 
-  static async adminValidator(value: object, _options: Joi.ValidationOptions) {
+  static async adminValidator(value: object, _options?: Joi.ValidationOptions) {
     const valid = UserValidator.notAnonymousValidator.validate(value);
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
@@ -33,7 +33,7 @@ export class UserValidator {
     }
   }
 
-  static groupValidator(value: object, _options: Joi.ValidationOptions, groups = []) {
+  static groupValidator(value: object, _options?: Joi.ValidationOptions, groups = []) {
     const valid = UserValidator.notAnonymousValidator.validate(value);
 
     if (valid.error) {

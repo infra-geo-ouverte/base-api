@@ -26,6 +26,17 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
 }));
 
 JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
+  base: joi
+    .array()
+    .length(4)
+    .items(Joi.number()),
+  type: 'extent',
+  coerce: (value: any, _helper: Joi.CustomHelpers) => {
+    return { value: value.split(',') };
+  }
+}));
+
+JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   base: joi.object().keys({
     type: Joi.string()
       .insensitive()
