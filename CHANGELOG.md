@@ -1,3 +1,17 @@
+## [1.0.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.1...1.0.2) (2021-03-08)
+
+
+### Bug Fixes
+
+* **plugins:** fix options plugins ([047f649](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/047f6499e812657b370d27544b9628419e616d60))
+
+
+### Features
+
+* **Joi:** add bbox ([262b7c4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/262b7c4dfdac80475c735a351c2205a77827f7d6))
+
+
+
 ## [1.0.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.0...1.0.1) (2021-03-05)
 
 
