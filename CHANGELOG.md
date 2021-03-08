@@ -1,3 +1,7 @@
+## [1.0.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.3...1.0.4) (2021-03-08)
+
+
+
 ## [1.0.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.2...1.0.3) (2021-03-08)
 
 
