@@ -80,7 +80,7 @@ export class IDatabase {
     };
 
         // Add models
-    this.sequelize.addModels([`${Config.getBasePath()}'/**/*.model.*`], (filename, member) => {
+    this.sequelize.addModels([`${Config.getBasePath()}/**/*.model.*`], (filename, member) => {
       const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
         pascalCase: true
       });
