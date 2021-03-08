@@ -19,12 +19,13 @@ export default (): IPlugin => {
     name: 'Logger',
     version: '2.0.0',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
-      const opts: LoggerOptions = options.logger || {
+      const loggerOptions: LoggerOptions = Object.assign({level: 'info'}, options.logger);
+      const opts = {
         colored: true,
         preformatter: preformatter,
         handleUncaught: true,
         pino: {
-          level: 'info'
+          level: loggerOptions.level
         },
         hapiPino: {
           logPayload: false,
@@ -35,7 +36,7 @@ export default (): IPlugin => {
           ignoreTags: [],
           ignoreFunc: (options, request) => {
             const ip = request.headers['x-real-ip'];
-            return opts.exclude && opts.exclude.ips && opts.exclude.ips.includes(ip);
+            return loggerOptions.exclude && loggerOptions.exclude.ips && loggerOptions.exclude.ips.includes(ip);
           }
         }
       };

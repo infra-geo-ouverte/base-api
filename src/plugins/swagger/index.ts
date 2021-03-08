@@ -8,13 +8,18 @@ export default (): IPlugin => {
     name: 'Swagger Documentation',
     version: '1.0.0',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
+      const serverHref = Config.getServerConfig().baseHref || '';
+      const apiHref = (options?.global?.baseHref || '');
       const result = SwaggerSchema.validate(options.swagger);
       const pck = require(`${Config.getBasePath()}/../package.json`);
       const swaggerOptions: SwaggerOptions = Object.assign(
         {
-          jsonPath: (options?.global?.baseHref || '') + '/swagger.json',
-          documentationPath: (options?.global?.baseHref || '') + '/docs/api',
-          swaggerUIPath: (options?.global?.baseHref || '') + '/swaggerui/',
+          basePath: '/apis/',
+          jsonRoutePath: apiHref + '/swagger.json',
+          routesBasePath: apiHref + '/swaggerui/',
+          documentationPath: apiHref + '/docs/api',
+          jsonPath: serverHref + apiHref + '/swagger.json',
+          swaggerUIPath: serverHref + apiHref + '/swaggerui/',
           info: {
               title: pck.name + " API Documentation",
               version: pck.version,
