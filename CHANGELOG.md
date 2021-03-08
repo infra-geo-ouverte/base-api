@@ -1,3 +1,12 @@
+## [1.0.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.2...1.0.3) (2021-03-08)
+
+
+### Bug Fixes
+
+* **datasource:** fix path model ([fbb2518](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/fbb2518d930564082758ac49c1926535561ee411))
+
+
+
 ## [1.0.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.1...1.0.2) (2021-03-08)
 
 
