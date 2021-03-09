@@ -19,6 +19,9 @@ export class UserValidator {
     if (valid.error) {
       throw Boom.unauthorized('Must be authenticated');
     }
+    return new Promise((resolve) => {
+      resolve(value);
+    });
   }
 
   static async adminValidator(value: object, _options?: Joi.ValidationOptions) {
@@ -31,6 +34,9 @@ export class UserValidator {
     if (!profils || !profils.split(', ').includes('admin')) {
       throw Boom.forbidden('Must be administrator');
     }
+    return new Promise((resolve) => {
+      resolve(value);
+    });
   }
 
   static groupValidator(value: object, _options?: Joi.ValidationOptions, groups = []) {
@@ -45,5 +51,8 @@ export class UserValidator {
     if (!profils.some((p: string) => groups.includes(p))) {
       throw Boom.forbidden("You don't have permissions");
     }
+    return new Promise((resolve) => {
+      resolve(value);
+    });
   }
 }
