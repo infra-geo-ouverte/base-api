@@ -1,3 +1,12 @@
+## [1.0.6](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.5...1.0.6) (2021-03-09)
+
+
+### Bug Fixes
+
+* **user.validator:** return a promise ([b2affd4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/b2affd4ec1ecfa100b43babb33ed6d3390dbf28b))
+
+
+
 ## [1.0.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.4...1.0.5) (2021-03-09)
 
 
