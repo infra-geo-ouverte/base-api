@@ -71,6 +71,9 @@ export class Server {
         cache: {
           expiresIn: 86400 * 1000 // 24 hour
         },
+        payload: {
+		      multipart: true as any
+		    },
         validate: {
           failAction: failAction(),
           options: {
