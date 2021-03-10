@@ -50,7 +50,7 @@ export class Server {
     if (configs.cache && configs.cache.engine === 'redis') {
       redisCacheConfig = {
         provider: {
-          constructor: require('catbox-redis'),
+          constructor: require('@hapi/catbox-redis'),
           options: {
             host: configs.cache.host,
             partition: configs.cache.partition
