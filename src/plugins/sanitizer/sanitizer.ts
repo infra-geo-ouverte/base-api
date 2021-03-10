@@ -3,10 +3,14 @@ import { Readable } from 'stream';
 
 export class Sanitizer {
   static sanitize(obj: any) {
-    for (const value in obj) {
-      if (!(obj[value] instanceof Readable)) {
-        obj[value] = JSON.parse(filterXSS(JSON.stringify(obj[value])));
+    if (typeof obj === 'object') {
+      for (const value in obj) {
+        if (!(obj[value] instanceof Readable)) {
+          obj[value] = JSON.parse(filterXSS(JSON.stringify(obj[value])));
+        }
       }
+    } else if (typeof obj === 'string') {
+      obj = filterXSS(obj);
     }
     return obj;
   }
