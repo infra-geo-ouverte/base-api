@@ -1,3 +1,14 @@
+## [1.0.7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.6...1.0.7) (2021-03-10)
+
+
+### Features
+
+* **catbox-redis:** update to 6.0.2 ([a30101b](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/a30101bf95d93d8989bbfab28d967a993183d748))
+* **plugin-health:** remove hapi-alive dep ([618b533](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/618b5336ce9b571a53cebc9df9b2d00189b81fba))
+* **plugin-sanitizer:** sanitize string payload ([70533fe](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/70533fe01264d38e74d96e2004edd38754768cab))
+
+
+
 ## [1.0.6](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.5...1.0.6) (2021-03-09)
 
 
