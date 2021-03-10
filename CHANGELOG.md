@@ -1,3 +1,12 @@
+## [1.0.8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.7...1.0.8) (2021-03-10)
+
+
+### Bug Fixes
+
+* **catbox-redis:** fix import ([275364f](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/275364fe6f250bdd4b840d20cac2b437176e730c))
+
+
+
 ## [1.0.7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.6...1.0.7) (2021-03-10)
 
 
