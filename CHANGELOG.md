@@ -1,3 +1,12 @@
+## [1.0.9](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.8...1.0.9) (2021-03-15)
+
+
+### Features
+
+* **serveur:** wait load completed ([df0096d](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/df0096d8c0febf2e78b3384794829cc2d8b25586))
+
+
+
 ## [1.0.8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.7...1.0.8) (2021-03-10)
 
 
