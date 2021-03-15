@@ -4,7 +4,13 @@ import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
 import { Sequelize } from 'sequelize-typescript';
 import * as camelcase from 'camelcase';
 
-import { Config, IDatabaseConfiguration, IDBStringConfiguration, IPostgresConfiguration, ISqliteConfiguration } from '../configurations';
+import {
+  Config,
+  IDatabaseConfiguration,
+  IDBStringConfiguration,
+  IPostgresConfiguration,
+  ISqliteConfiguration
+} from '../configurations';
 import { log } from '../utils/log';
 
 export interface QueryOptions extends SequelizeQueryOptions {
@@ -19,7 +25,7 @@ export class IDatabase {
     return this.sequelize.query(sql, options);
   }
 
-  initDatabase(server: Hapi.Server) {
+  async initDatabase(server: Hapi.Server) {
     const dbConfigs = Config.getDatabaseConfig();
 
     type IDBConf = IDatabaseConfiguration;
@@ -71,24 +77,35 @@ export class IDatabase {
       });
     }
     // Global error Handler
-    (this.sequelize as any).query = function() {
-      return Sequelize.prototype.query.apply(this, arguments).catch(err => {
-        const request = arguments[1] ? arguments[1].request : server;
+    (this.sequelize as any).query = function () {
+      return Sequelize.prototype.query.apply(this, arguments).catch((err) => {
+        const request = arguments[1]?.request || server;
         request.log(['error', 'database'], `\u001b[1m${Boom.badRequest(err).message}`);
-        throw Boom.badRequest('Bad Database Request');
+        throw Boom.badRequest('Bad Database Request', err);
       });
     };
 
-        // Add models
-    this.sequelize.addModels([`${Config.getBasePath()}/**/*.model.*`], (filename, member) => {
-      const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
-        pascalCase: true
+    // Add models
+    if (dbConfigs.models) {
+      for (const modelName of dbConfigs.models) {
+        this.sequelize.addModels([`${Config.getBasePath()}/${modelName}/*.model.*`], (filename, member) => {
+          const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
+            pascalCase: true,
+          });
+          return className === member;
+        });
+      }
+    } else {
+      this.sequelize.addModels([`${Config.getBasePath()}/**/*.model.*`], (filename, member) => {
+        const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
+          pascalCase: true,
+        });
+        return className === member;
       });
-      return className === member;
-    });
+    }
 
     // Create tables if not exist
-    this.sequelize.sync();
+    await this.sequelize.sync();
   }
 }
 

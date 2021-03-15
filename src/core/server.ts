@@ -39,7 +39,6 @@ const loadRoutes = (configs: IServerConfiguration, server: Hapi.Server) => {
 let serverHapi: Hapi.Server;
 
 export class Server {
-
   static getServer() {
     return serverHapi;
   }
@@ -72,8 +71,8 @@ export class Server {
           expiresIn: 86400 * 1000 // 24 hour
         },
         payload: {
-		      multipart: true as any
-		    },
+          multipart: true as any
+        },
         validate: {
           failAction: failAction(),
           options: {
@@ -83,9 +82,9 @@ export class Server {
       }
     });
 
-    serverHapi.validator(Joi)
+    serverHapi.validator(Joi);
 
-    database.initDatabase(serverHapi);
+    await database.initDatabase(serverHapi);
     await loadPlugins(configs, serverHapi);
     await loadRoutes(configs, serverHapi);
 
@@ -101,7 +100,7 @@ export class Server {
       process.send('ready');
     }
 
-    process.on('unhandledRejection', err => {
+    process.on('unhandledRejection', (err) => {
       console.error(err);
       process.exit(1);
     });

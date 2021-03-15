@@ -35,7 +35,7 @@ export default (): IPlugin => {
           ignorePaths: [],
           ignoreTags: [],
           ignoreFunc: (options, request) => {
-            const ip = request.headers['x-real-ip'];
+            const ip = request.headers ? request.headers['x-real-ip'] : undefined;
             return loggerOptions.exclude && loggerOptions.exclude.ips && loggerOptions.exclude.ips.includes(ip);
           }
         }
