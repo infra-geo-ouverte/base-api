@@ -1,3 +1,12 @@
+## [1.0.10](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.9...1.0.10) (2021-03-18)
+
+
+### Bug Fixes
+
+* **JoiPlus:** fix geojson was a string ([bc359f2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/bc359f2a47080f1bfe47ea5cc8c480d12e7cc53e))
+
+
+
 ## [1.0.9](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.8...1.0.9) (2021-03-15)
 
 
