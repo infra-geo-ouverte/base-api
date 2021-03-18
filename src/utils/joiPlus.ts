@@ -1,9 +1,8 @@
 import * as Joi from 'joi';
-import * as Boom from '@hapi/boom';
 import { GeometryObject } from 'geojson';
 
 let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({
-  base: joi.array(),
+  base: joi.array().min(1),
   type: 'stringArray',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
     if (typeof value !== 'string') {
@@ -15,7 +14,7 @@ let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({
 }));
 
 JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
-  base: joi.array().items(joi.array().length(2).items(Joi.number())),
+  base: joi.array().items(joi.array().length(2).items(joi.number())),
   type: 'coordinates',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
     if (typeof value !== 'string') {
@@ -38,32 +37,35 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
 
 JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   base: joi.object().keys({
-    type: Joi.string()
+    type: joi.string()
       .insensitive()
       .valid('Point', 'LineString', 'Polygon', 'MultiPoint', 'MultiLineString', 'MultiPolygon')
       .required(),
-    coordinates: Joi.array()
+    coordinates: joi.array()
       .required()
       .items(
-        Joi.number(),
-        Joi.array().items(Joi.number(), Joi.array().items(Joi.number(), Joi.array().items(Joi.number()))),
+        joi.number(),
+        joi.array().items(Joi.number(), joi.array().items(joi.number(), joi.array().items(joi.number()))),
       ),
-    crs: Joi.object()
+    crs: joi.object()
       .optional()
       .keys({
-        type: Joi.string().valid('name'),
-        properties: Joi.object().keys({
-          name: Joi.string().regex(/EPSG:[0-9]+/, 'EPSG'),
+        type: joi.string().valid('name'),
+        properties: joi.object().keys({
+          name: joi.string().regex(/EPSG:[0-9]+/, 'EPSG'),
         }),
       }),
   }),
   type: 'geojson',
-  coerce: (value: any, _helper: Joi.CustomHelpers) => {
+  messages: {
+    'geojson.invalid': '{{#label}} is not a valid geojson'
+  },
+  coerce: (value: any, helper: Joi.CustomHelpers) => {
     let geojson: GeometryObject;
     try {
-      geojson = JSON.parse(JSON.stringify(value));
+      geojson = JSON.parse(value);
     } catch (e) {
-      throw Boom.badRequest('Geojson is invalid');
+      return { value, errors: helper.error('geojson.invalid') };
     }
     return { value: geojson };
   },
