@@ -62,10 +62,10 @@ export class IDatabase {
           }
         },
         pool: {
-          max: 5,
-          min: 0,
-          acquire: 30000,
-          idle: 10000
+          max: dbPG.pool?.max || 5,
+          min: dbPG.pool?.min || 0,
+          acquire: dbPG.pool?.acquire || 30000,
+          idle: dbPG.pool?.idle || 10000
         }
       });
     } else {

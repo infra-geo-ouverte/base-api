@@ -37,6 +37,12 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
   database: string;
   username?: string;
   password?: string;
+  pool?: {
+    max?: number;
+    min?: number;
+    acquire?: number;
+    idle?: number;
+  }
 }
 
 export interface IDBStringConfiguration extends IDatabaseConfiguration {
