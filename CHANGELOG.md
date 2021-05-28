@@ -1,3 +1,12 @@
+## [1.0.11](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.10...1.0.11) (2021-05-28)
+
+
+### Features
+
+* **PostgresConfiguration:** add pool configuration ([15d0d52](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/15d0d5284032dcebda0c72cfc295ecad9164183e))
+
+
+
 ## [1.0.10](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.9...1.0.10) (2021-03-18)
 
 
