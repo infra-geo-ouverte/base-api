@@ -16,11 +16,19 @@ let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({
 JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   base: joi.array().items(joi.array().length(2).items(joi.number())),
   type: 'coordinates',
-  coerce: (value: any, _helper: Joi.CustomHelpers) => {
-    if (typeof value !== 'string') {
-      return { value: value.map((l: string) => l.split(',')) };
+  messages: {
+    'coordinates.invalid': '{{#label}} is not a valid coordinate'
+  },
+  coerce: (value: any, helper: Joi.CustomHelpers) => {
+    if (Array.isArray(value)) {
+      return { value: value.map((l: string) => {
+        return typeof l === 'string' ? l.split(',') : l;
+      })};
     }
-    return { value: value.split(';').map((l) => l.split(',')) };
+    if (typeof value === 'string') {
+      return { value: value.split(';').map((l) => l.split(',')) };
+    }
+    return { value, errors: helper.error('coordinates.invalid') };
   },
 }));
 
@@ -31,7 +39,10 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
     .items(Joi.number()),
   type: 'extent',
   coerce: (value: any, _helper: Joi.CustomHelpers) => {
-    return { value: value.split(',') };
+    if (typeof value === 'string') {
+      return { value: value.split(',') };
+    }
+    return { value: value };
   }
 }));
 
@@ -63,7 +74,9 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   coerce: (value: any, helper: Joi.CustomHelpers) => {
     let geojson: GeometryObject;
     try {
-      geojson = JSON.parse(value);
+      if (typeof value === 'string') {
+        geojson = JSON.parse(value);
+      }
     } catch (e) {
       return { value, errors: helper.error('geojson.invalid') };
     }
