@@ -1,3 +1,12 @@
+## [1.0.12](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.11...1.0.12) (2021-06-03)
+
+
+### Bug Fixes
+
+* **JoiPlus:** fix when validation pass twice ([5adc8bc](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/5adc8bc3792fc72222d28a0899f465932750dc57))
+
+
+
 ## [1.0.11](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.10...1.0.11) (2021-05-28)
 
 
