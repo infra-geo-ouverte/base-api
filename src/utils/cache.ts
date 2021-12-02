@@ -27,24 +27,33 @@ function init() {
     : [];
 }
 
-function scanRedis(client: Redis, pattern: string, callback: (client: Redis, keys: string[]) => void, cursor = '0') {
-  client.scan(cursor, 'MATCH', pattern, 'COUNT', '100', (err: any, reply: [string, string[]]) => {
-    if (err) {
-      throw err;
-    }
-    cursor = reply[0];
-    const keys = reply[1];
-    if (keys.length !== 0) {
-      callback(client, keys);
-    }
-    if (cursor !== '0') {
-      scanRedis(client, pattern, deleteKeys, cursor);
-    }
+async function scanRedis(
+  client: Redis, pattern: string, callback: (client: Redis, keys: string[]) => Promise<void>, cursor = '0'
+) {
+  return new Promise((resolve, _reject) => {
+    client.scan(cursor, 'MATCH', pattern, 'COUNT', '100', async (err: any, reply: [string, string[]]) => {
+      if (err) {
+        throw err;
+      }
+      cursor = reply[0];
+      const keys = reply[1];
+
+      if (cursor !== '0') {
+        await scanRedis(client, pattern, deleteKeys, cursor);
+      }
+
+      if (keys.length !== 0) {
+        await callback(client, keys);
+        resolve(0);
+      } else {
+        resolve(0);
+      }
+    });
   });
 }
 
-function deleteKeys(client: Redis, keys: string[]) {
-  client.del(keys);
+async function deleteKeys(client: Redis, keys: string[]) {
+  await client.pipeline().del(keys).exec();
 }
 
 function setReplicats(cacheKey: string, value: any, ttl: number) {
@@ -109,22 +118,22 @@ export function dropCache(className = '*', functionName = '*', replicats = true)
     init();
   }
   return (_target: object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(...args: any[]) => any>) => {
-    return {
-      value: (...args: any[]) => {
-        const rep = descriptor.value(...args);
-        if (cacheConfig.engine === 'redis') {
-          const pattern = `${cacheConfig.partition}:${className}.${functionName}:*`;
-          scanRedis(redisClient, pattern, deleteKeys);
-          if (replicats) {
-            for (const client of redisClientReplicats) {
-              if (client.status === 'ready') {
-                scanRedis(client, pattern, deleteKeys);
-              }
+    const originalMethod = descriptor.value;
+    descriptor.value = async function(...args: any[]) {
+      if (cacheConfig && cacheConfig.engine === 'redis') {
+        const pattern = `${cacheConfig.partition}:${className}.${functionName}:*`;
+        await scanRedis(redisClient, pattern, deleteKeys);
+        if (replicats) {
+          for (const client of redisClientReplicats) {
+            if (client.status === 'ready') {
+              await scanRedis(client, pattern, deleteKeys);
             }
           }
         }
-        return rep;
       }
+
+      return await originalMethod.apply(this, args);
     };
+    return descriptor;
   };
 }
