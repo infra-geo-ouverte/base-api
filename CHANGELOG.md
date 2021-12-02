@@ -1,3 +1,12 @@
+# [1.1.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.12...1.1.0) (2021-12-02)
+
+
+### Bug Fixes
+
+* **cache:** this undefined and delete promise ([98a9e52](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/98a9e52980b69e932aa8a48db22f4532cdd82f51))
+
+
+
 ## [1.0.12](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.11...1.0.12) (2021-06-03)
 
 
