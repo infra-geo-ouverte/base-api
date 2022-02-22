@@ -61,6 +61,9 @@ export class IDatabase {
             server.log(tags, data);
           }
         },
+        dialectOptions: {
+          statement_timeout: dbPG.timeout || 60000
+        },
         pool: {
           max: dbPG.pool?.max || 5,
           min: dbPG.pool?.min || 0,
