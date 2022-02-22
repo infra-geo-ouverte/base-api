@@ -3,6 +3,7 @@ export interface IRedisCacheConfig {
   host: string;
   partition: string;
   port?: string;
+  timeout?: number;
   replicats?: [{
     host: string;
     port?: string;
