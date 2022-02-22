@@ -1,3 +1,12 @@
+## [1.1.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.1.1...1.1.2) (2022-02-22)
+
+
+### Bug Fixes
+
+* **cache:** fix timeout when no config ([85600cd](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/85600cd82a4aae67a824a039a26b8550e316318c))
+
+
+
 ## [1.1.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.1.0...1.1.1) (2022-02-22)
 
 
