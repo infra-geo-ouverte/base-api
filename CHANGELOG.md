@@ -1,3 +1,18 @@
+## [1.1.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.1.0...1.1.1) (2022-02-22)
+
+
+### Bug Fixes
+
+* **database:** improve database error in log ([2574859](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/25748593b66333cf4d339991e4808628b04535ab))
+
+
+### Features
+
+* **cache:** add config to change timeout when adding cache ([fa2bef4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/fa2bef4be321de0566567581e532d4de9ed38d31))
+* **database:** add request db timeout ([b9c52fd](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/b9c52fd858f3ced82387c0a51f358ba317a90879))
+
+
+
 # [1.1.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.0.12...1.1.0) (2021-12-02)
 
 
