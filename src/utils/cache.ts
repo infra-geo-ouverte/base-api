@@ -98,7 +98,7 @@ export function cache({ expiresIn = 86400000, replicats = true } = {}) {
         }
         return data;
       },
-      generateTimeout: cacheConfig.timeout || 60000
+      generateTimeout: cacheConfig?.timeout || 60000
     });
     return {
       value: function(...args: any[]) {
