@@ -21,7 +21,7 @@ export default (): IPlugin => {
           jsonPath: serverHref + apiHref + '/swagger.json',
           swaggerUIPath: serverHref + apiHref + '/swaggerui/',
           info: {
-              title: pck.name + " API Documentation",
+              title: pck.name + ' API Documentation',
               version: pck.version,
               description: pck.description
           }

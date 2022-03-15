@@ -34,7 +34,7 @@ export default (): IPlugin => {
           options: {
               tags: opts.tags,
               description: 'Check if the server is healthy',
-              handler: async function (request, h) {
+              handler: async () => {
 
                   try {
                       await opts.healthCheck(server);
