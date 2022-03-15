@@ -1,3 +1,13 @@
+## [1.2.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.2.0...1.2.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* ignore function ([b3f9170](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/b3f91703bc08ba4a621fe2c9b79c395b0f9da3f2))
+* **sanitizer:** fix readabled array stringify ([5c7b4dd](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/5c7b4dd7b869e1fc71e7a293d16fb9c489619510))
+
+
+
 # [1.2.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.1.2...1.2.0) (2022-02-28)
 
 
