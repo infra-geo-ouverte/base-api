@@ -65,6 +65,9 @@ export class Server {
         stripTrailingSlash: true,
         isCaseSensitive: false
       },
+      state: {
+        ignoreErrors: true
+      },
       cache: redisCacheConfig,
       routes: {
         cache: {
