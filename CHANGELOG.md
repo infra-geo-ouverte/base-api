@@ -1,3 +1,17 @@
+## [1.2.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.2.1...1.2.2) (2022-06-21)
+
+
+### Bug Fixes
+
+* **cookie:** ignore invalid cookies ([fa425d6](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/fa425d6fb129f1df104c0575e638805e45616264))
+
+
+### Features
+
+* **node:** compatible with v16 ([f1b6114](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/f1b61140f1665fe7145223ab4d9972f73d5d595f))
+
+
+
 ## [1.2.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.2.0...1.2.1) (2022-03-15)
 
 
