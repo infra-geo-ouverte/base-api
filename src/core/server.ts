@@ -60,7 +60,7 @@ export class Server {
 
     serverHapi = new Hapi.Server({
       port: port,
-      host: 'localhost',
+      host: configs.host || 'localhost',
       router: {
         stripTrailingSlash: true,
         isCaseSensitive: false
