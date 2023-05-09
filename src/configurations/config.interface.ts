@@ -16,6 +16,7 @@ export interface IServerConfiguration {
   routes: string[];
   plugins: string[];
   pluginsOptions: any;
+  host?: string;
   cache?: IRedisCacheConfig;
   baseHref?: string;
 }
