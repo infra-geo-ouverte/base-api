@@ -55,8 +55,10 @@ export interface IDBStringConfiguration extends IDatabaseConfiguration {
 export type IDataConfiguration = ISqliteConfiguration | IPostgresConfiguration | IDBStringConfiguration;
 
 export interface IMailConfiguration {
-  host: string;
-  port: number;
   from: string;
   to?: string;
+  host?: string;
+  port?: number;
+  aws?: boolean;
+  region?: string;
 }

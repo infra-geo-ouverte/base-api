@@ -26,6 +26,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.338.0",
     "@hapi/boom": "^9.1.1",
     "@hapi/catbox-redis": "^6.0.2",
     "@hapi/hapi": "^20.2.1",

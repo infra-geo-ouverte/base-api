@@ -1,4 +1,6 @@
 import * as nodemailer from 'nodemailer';
+import { SES, SendRawEmailCommand } from "@aws-sdk/client-ses";
+
 import { Config } from '../configurations';
 
 export interface Mail {
@@ -17,15 +19,31 @@ export async function sendMail(mail: Mail) {
     console.error('Mail config is not defined');
     return;
   }
-  const transporter = nodemailer.createTransport({
-    host: mailConfig.host,
-    port: mailConfig.port,
-    secure: false
-  });
 
+  let transporterOpt = {};
+  if (mailConfig.aws) {
+    transporterOpt = {
+        SES: {
+            ses: new SES({
+                region: mailConfig.region || 'ca-central-1'
+            }),
+            aws: { SendRawEmailCommand }
+        }
+    };
+  } else {
+    transporterOpt = {
+        host: mailConfig.host,
+        port: mailConfig.port,
+        secure: false
+    };
+  }
+
+  const transporter = nodemailer.createTransport(transporterOpt);
+
+  const mailTo = mail.to || mailConfig.to;
   const mailOptions = {
     from: mailConfig.from,
-    to: mail.to || mailConfig.to,
+    to: mailTo,
     subject: mail.subject,
     text: mail.text,
     attachments: mail.attachments
@@ -35,7 +53,7 @@ export async function sendMail(mail: Mail) {
     .sendMail(mailOptions)
     .catch(e => console.error(e));
 
-  console.log('Email sent: ' + info.response);
+  console.log('Email sent: ' + mailTo);
 
   return info;
 }
