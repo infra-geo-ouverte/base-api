@@ -1,3 +1,12 @@
+# [1.5.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.4.0...1.5.0) (2023-05-24)
+
+
+### Features
+
+* **mail:** add aws ses support ([94622e1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/94622e178334a94aba51fb6af4d93e34521b6b45))
+
+
+
 # [1.4.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.3.0...1.4.0) (2023-05-09)
 
 
