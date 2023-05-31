@@ -62,3 +62,15 @@ export interface IMailConfiguration {
   aws?: boolean;
   region?: string;
 }
+
+export interface IConfigOptions {
+  argv?: {
+    parseValues?: boolean;
+  },
+  env?: {
+    separator?: string;
+    prefixKey?: string;
+    removePrefixKey?: boolean;
+    parseValues?: boolean;
+  }
+}

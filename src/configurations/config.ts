@@ -1,22 +1,52 @@
 import * as nconf from 'nconf';
 
-import { IDataConfiguration, IServerConfiguration, IMailConfiguration } from './config.interface';
+import { ObjectUtils } from '../utils/object-utils'
+import { IDataConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions } from './config.interface';
 
 let configs: nconf.Provider;
 let path: string;
 
 export class Config {
 
-  static readConfig(basePath: string, relPath: string) {
+  private static defaultsOptions: IConfigOptions = {
+    argv: {
+      parseValues: true
+    },
+    env: {
+      separator: '__',
+      prefixKey: 'igo',
+      removePrefixKey: true,
+      parseValues: true
+    }
+  };
+
+  static readConfig(basePath: string, relPath: string, opts: IConfigOptions = {}) {
+
     path = basePath;
-    configs =  new nconf.Provider({
-      env: true,
-      argv: true,
-      store: {
-        type: 'file',
+    opts = ObjectUtils.mergeDeep(this.defaultsOptions, opts);
+
+    configs = nconf
+      .argv({
+        parseValues: opts.argv.parseValues
+      })
+      .env({
+        separator: opts.env.separator,
+        parseValues: opts.env.parseValues,
+        transform: (obj) => {
+            const regex = new RegExp(`^${opts.env.prefixKey}(${opts.env.separator}|:)`);
+            const match = obj.key.match(regex);
+            if (!match) {
+                return false;
+            }
+            if (opts.env.removePrefixKey) {
+              obj.key = obj.key.replace(match[0], '');
+            }
+            return obj;
+        }
+      })
+      .file({
         file: basePath + '/' + relPath
-      }
-    });
+      });
   }
 
   static getConfig(key?: string) {
