@@ -1,3 +1,12 @@
+# [1.6.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.5.0...1.6.0) (2023-05-31)
+
+
+### Features
+
+* **config:** can now use env variable and argument variable ([5588009](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/5588009fac1df4f6e43237903df64127a2886e46))
+
+
+
 # [1.5.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.4.0...1.5.0) (2023-05-24)
 
 
