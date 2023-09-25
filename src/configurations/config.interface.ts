@@ -36,7 +36,7 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
   dialect: 'postgres';
   host: string;
   port: number;
-  database: string;
+  dbname: string;
   username?: string;
   password?: string;
   timeout?: number;
