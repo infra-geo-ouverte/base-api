@@ -42,7 +42,7 @@ export class IDatabase {
       this.sequelize = new Sequelize(dbString.connectionString);
     } else if (dbConf.dialect === 'postgres') {
       const dbPG: IPostgresConf = dbConfigs as IPostgresConf;
-      this.sequelize = new Sequelize(dbPG.dbname || dbPG.database, dbPG.username, dbPG.password, {
+      this.sequelize = new Sequelize(dbPG.dbname, dbPG.username, dbPG.password, {
         host: dbPG.host,
         port: dbPG.port,
         dialect: dbPG.dialect,
