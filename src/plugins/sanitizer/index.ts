@@ -30,7 +30,7 @@ export default (): IPlugin => {
           const sanitizerOpt: SanitizerOptions = Object.assign(
             {},
             sanitizerDefaultOpt,
-            (request.route.settings.plugins as any).sanitize
+            (request.route.settings.plugins as {[key: string]: unknown}).sanitize
           );
 
           if (!sanitizerOpt.enabled) {
@@ -42,8 +42,11 @@ export default (): IPlugin => {
             Object.keys(request.params).length ||
             Object.keys(request.query).length
           ) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (request as any).payload = Sanitizer.sanitize(request.payload);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (request as any).query = Sanitizer.sanitize(request.query);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (request as any).params = Sanitizer.sanitize(request.params);
           }
 

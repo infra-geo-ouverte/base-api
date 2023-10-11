@@ -42,6 +42,7 @@ export default (): IPlugin => {
       };
 
       // https://github.com/felixheck/laabr/blob/master/docs/tokens-formats-presets.md
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const laabr = require('laabr');
       laabr.format('log', ':time[iso] :level :message');
       laabr.format('request', ':time[iso]:get[id] :tags :get[ip]:get[username] :message')

@@ -11,6 +11,7 @@ export default (): IPlugin => {
       const serverHref = Config.getServerConfig().baseHref || '';
       const apiHref = (options?.global?.baseHref || '');
       const result = SwaggerSchema.validate(options.swagger);
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const pck = require(`${Config.getBasePath()}/../package.json`);
       const swaggerOptions: SwaggerOptions = Object.assign(
         {
