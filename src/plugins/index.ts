@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-var-requires: 1 */
+
 import { IPlugin } from './plugin.interface';
 import { default as apm} from './apm';
 import { default as devErrors} from './dev-errors';

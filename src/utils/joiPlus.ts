@@ -1,3 +1,6 @@
+/* eslint @typescript-eslint/no-explicit-any: 1 */
+/* eslint @typescript-eslint/no-unused-vars: 1 */
+
 import * as Joi from 'joi';
 import { GeometryObject } from 'geojson';
 

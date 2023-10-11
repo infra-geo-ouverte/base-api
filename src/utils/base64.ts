@@ -17,8 +17,8 @@ export class Base64 {
     let pads = 0,
       i,
       b10,
-      imax = s.length,
-      x = [];
+      imax = s.length;
+    const x = [];
 
     s = String(s);
 
@@ -64,9 +64,9 @@ export class Base64 {
     s = String(s);
 
     let i,
-      b10,
-      x = [],
-      imax = s.length - s.length % 3;
+      b10;
+    const x = [];
+    const imax = s.length - s.length % 3;
 
     if (s.length === 0) {
       return s;

@@ -1,3 +1,5 @@
+/*eslint no-prototype-builtins: 1 */
+
 import * as Hapi from '@hapi/hapi';
 import * as Joi from 'joi';
 

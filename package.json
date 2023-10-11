@@ -13,7 +13,7 @@
   "scripts": {
     "tsc": "tsc",
     "build": "rimraf build && npm run tsc",
-    "lint": "tslint -c tslint.json -t prose src/**/*.ts",
+    "lint": "eslint src/**/*.ts",
     "test": "npm run lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "preversion": "npm run test && npm run build",

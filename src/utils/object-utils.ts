@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-explicit-any: 1 */
+
 export class ObjectUtils {
   static resolve(obj: object, key: string): any {
     const keysArray = key

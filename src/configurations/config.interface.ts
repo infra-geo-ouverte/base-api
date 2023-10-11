@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: 1 */
 export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;

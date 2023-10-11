@@ -1,3 +1,5 @@
+/* eslint @typescript-eslint/no-explicit-any: 1 */
+
 import { Server } from '../core/server';
 
 export function log(tags: string | string[], data: string | object, requestId?: string) {
