@@ -2,11 +2,11 @@ export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;
   partition: string;
-  port?: string;
+  port?: number;
   timeout?: number;
   replicats?: [{
     host: string;
-    port?: string;
+    port?: number;
     enabled?: boolean;
   }];
 }

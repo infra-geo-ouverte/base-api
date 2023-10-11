@@ -54,14 +54,13 @@
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.11",
-    "@types/hapi__hapi": "^21.0.0",
-    "@types/hapi__inert": "^5.2.8",
-    "@types/hapi__vision": "^5.5.5",
     "@types/node": "^20.8.4",
     "@types/validator": "^13.11.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
     "conventional-changelog-cli": "^4.1.0",
+    "eslint": "^8.51.0",
     "rimraf": "^5.0.5",
-    "tslint": "^6.1.3",
     "typescript": "^5.2.2"
   },
   "engines": {

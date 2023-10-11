@@ -1,6 +1,6 @@
 import * as md5 from 'md5';
 import { inspect } from 'util';
-import * as Redis from 'ioredis';
+import Redis from 'ioredis';
 
 import { Config, IRedisCacheConfig } from '../configurations';
 import { Server } from '../core/server';
@@ -18,12 +18,12 @@ function init() {
   };
 
   redisClient = cacheConfig && cacheConfig.engine === 'redis' ?
-    new Redis({}, Object.assign({host: cacheConfig.host, port: cacheConfig.port}, cacheRedisOpts)) : undefined;
+    new Redis(Object.assign({host: cacheConfig.host, port: cacheConfig.port}, cacheRedisOpts)) : undefined;
 
   redisClientReplicats = cacheConfig && cacheConfig.engine === 'redis' && cacheConfig.replicats ?
     cacheConfig.replicats
       .filter(r => r.enabled !== false)
-      .map(r => new Redis({}, Object.assign({host: r.host, port: r.port}, cacheRedisOpts)))
+      .map(r => new Redis(Object.assign({host: r.host, port: r.port}, cacheRedisOpts)))
     : [];
 }
 
