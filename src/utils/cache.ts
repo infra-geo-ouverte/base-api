@@ -1,6 +1,3 @@
-/* eslint @typescript-eslint/no-explicit-any: 1 */
-/* eslint @typescript-eslint/no-unused-vars: 1 */
-
 import * as md5 from 'md5';
 import { inspect } from 'util';
 import Redis from 'ioredis';

@@ -1,4 +1,3 @@
-/* eslint @typescript-eslint/no-explicit-any: 1 */
 /* eslint @typescript-eslint/no-var-requires: 1 */
 
 import * as Hapi from '@hapi/hapi';

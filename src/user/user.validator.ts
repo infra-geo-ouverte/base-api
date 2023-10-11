@@ -1,5 +1,3 @@
-/* eslint @typescript-eslint/no-unused-vars: 1 */
-
 import * as Joi from 'joi';
 import * as Boom from '@hapi/boom';
 
