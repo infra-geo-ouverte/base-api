@@ -1,3 +1,13 @@
+## [2.0.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.0...2.0.1) (2023-10-11)
+
+
+### Bug Fixes
+
+* **any:** remove any type ([8a8d768](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/8a8d7685584af8878b8ada879034472d2065aff2))
+* **any:** remove any type ([f1942ca](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/f1942ca32f533122d1576dcfb21cd002bcb6a7fb))
+
+
+
 # [2.0.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.7.0...2.0.0) (2023-10-11)
 
 
