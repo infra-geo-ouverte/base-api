@@ -1,11 +1,11 @@
 import * as Hapi from '@hapi/hapi';
 
 import { IPlugin, IPluginOptions } from '../plugin.interface';
-import { LoggerOptions } from './logger.options';
+import { LoggerOptions, LoggerLevel } from './logger.options';
 
-function preformatter(event: any) {
+function preformatter(event: {req?: {[key: string]: unknown}; [key: string]: unknown}) {
     if (event.req) {
-      event.id = event.req.id ? ` (${event.pid}:${event.req.id.split(':').pop()})` : '';
+      event.id = event.req.id ? ` (${event.pid}:${(event.req.id as string).split(':').pop()})` : '';
       const headers = event.req.headers ? event.req.headers : {};
       event.ip = headers['x-real-ip'] ? ` - ${headers['x-real-ip']}` : '';
       event.username = headers['x-consumer-username'] ? ` - ${headers['x-consumer-username']}` : '';
@@ -19,7 +19,7 @@ export default (): IPlugin => {
     name: 'Logger',
     version: '2.0.0',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
-      const loggerOptions: LoggerOptions = Object.assign({level: 'info'}, options.logger);
+      const loggerOptions: LoggerOptions = Object.assign({level: LoggerLevel.info}, options.logger);
       const opts = {
         colored: true,
         preformatter: preformatter,

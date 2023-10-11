@@ -82,9 +82,9 @@ export class IDatabase {
       });
     }
     // Global error Handler
-    (this.sequelize as any).query = function () {
-      return Sequelize.prototype.query.apply(this, arguments).catch((err) => {
-        const request = arguments[1]?.request || server;
+    this.sequelize.query = (...args) => {
+      return Sequelize.prototype.query.apply(this, args).catch((err) => {
+        const request = args[1]?.request || server;
         request.log(['error', 'database'], `\u001b[1m${err}`);
         throw Boom.badRequest('Bad Database Request', err);
       });

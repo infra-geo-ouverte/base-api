@@ -1,5 +1,5 @@
 export class ObjectUtils {
-  static resolve(obj: object, key: string): any {
+  static resolve(obj: object, key: string): unknown {
     const keysArray = key
       .replace(/\[/g, '.')
       .replace(/\]/g, '')
@@ -19,7 +19,7 @@ export class ObjectUtils {
     return item && typeof item === 'object' && !Array.isArray(item) && item !== null && !(item instanceof Date);
   }
 
-  static mergeDeep(target: object, source: object, ignoreUndefined = false): any {
+  static mergeDeep(target: object, source: object, ignoreUndefined = false): unknown {
     const output = Object.assign({}, target);
     if (ObjectUtils.isObject(target) && ObjectUtils.isObject(source)) {
       Object.keys(source)
@@ -39,7 +39,7 @@ export class ObjectUtils {
     return output;
   }
 
-  static removeUndefined(obj: object): any {
+  static removeUndefined(obj: object): unknown {
     const output = {};
     if (ObjectUtils.isObject(obj)) {
       Object.keys(obj)
@@ -62,7 +62,7 @@ export class ObjectUtils {
     return obj;
   }
 
-  static removeNull(obj: object): any {
+  static removeNull(obj: object): unknown {
     const output = {};
     if (ObjectUtils.isObject(obj)) {
       Object.keys(obj)

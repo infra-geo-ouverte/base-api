@@ -1,5 +1,3 @@
-/*eslint no-prototype-builtins: 1 */
-
 import * as Hapi from '@hapi/hapi';
 import * as Joi from 'joi';
 
@@ -61,9 +59,9 @@ function parseError(error: ValidationError, messages: object) {
     };
 
     // set custom message (if exists)
-    if (messages.hasOwnProperty(err.path)) {
+    if (Object.prototype.hasOwnProperty.call(messages, err.path)) {
       err.message = messages[err.path];
-    } else if (messages.hasOwnProperty(err.key)) {
+    } else if (Object.prototype.hasOwnProperty.call(messages, err.key)) {
       err.message = messages[err.key];
     } else if (err.constraint === 'allowUnknown') {
       err.key = null;

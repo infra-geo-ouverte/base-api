@@ -1,5 +1,3 @@
-/* eslint @typescript-eslint/no-var-requires: 1 */
-
 import * as Hapi from '@hapi/hapi';
 import * as Joi from 'joi';
 import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
@@ -32,6 +30,7 @@ const loadRoutes = (configs: IServerConfiguration, server: Hapi.Server) => {
   server.log('info', 'Routes loading');
   const routes: string[] = configs.routes || [];
   routes.forEach((routeName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Route: IRoute = require(`${Config.getBasePath()}/${routeName}`);
     Route.init(server);
   });
@@ -55,7 +54,7 @@ export class Server {
           options: {
             host: configs.cache.host,
             partition: configs.cache.partition
-          } as any
+          } as unknown
         }
       };
     }
@@ -76,6 +75,7 @@ export class Server {
           expiresIn: 86400 * 1000 // 24 hour
         },
         payload: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           multipart: true as any
         },
         validate: {

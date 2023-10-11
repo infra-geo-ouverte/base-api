@@ -1,3 +1,5 @@
+import { IPluginOptions } from '../plugins';
+
 export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;
@@ -15,7 +17,7 @@ export interface IServerConfiguration {
   port: number;
   routes: string[];
   plugins: string[];
-  pluginsOptions: any;
+  pluginsOptions: IPluginOptions;
   host?: string;
   cache?: IRedisCacheConfig;
   baseHref?: string;

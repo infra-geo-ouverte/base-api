@@ -2,7 +2,7 @@ import { filterXSS } from 'xss';
 import { Readable } from 'stream';
 
 export class Sanitizer {
-  static sanitize(obj: any) {
+  static sanitize(obj: unknown) {
     if (typeof obj === 'object') {
       for (const value in obj) {
         if (obj[value] instanceof Array) {

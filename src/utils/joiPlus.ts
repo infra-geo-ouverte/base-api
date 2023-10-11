@@ -4,7 +4,7 @@ import { GeometryObject } from 'geojson';
 let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({
   base: joi.array().min(1),
   type: 'stringArray',
-  coerce: (value: any, _helper: Joi.CustomHelpers) => {
+  coerce: (value: unknown, _helper: Joi.CustomHelpers) => {
     if (typeof value !== 'string') {
       return { value };
     }
@@ -19,7 +19,7 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   messages: {
     'coordinates.invalid': '{{#label}} is not a valid coordinate'
   },
-  coerce: (value: any, helper: Joi.CustomHelpers) => {
+  coerce: (value: unknown, helper: Joi.CustomHelpers) => {
     if (Array.isArray(value)) {
       return { value: value.map((l: string) => {
         return typeof l === 'string' ? l.split(',') : l;
@@ -38,7 +38,7 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
     .length(4)
     .items(Joi.number()),
   type: 'extent',
-  coerce: (value: any, _helper: Joi.CustomHelpers) => {
+  coerce: (value: unknown, _helper: Joi.CustomHelpers) => {
     if (typeof value === 'string') {
       return { value: value.split(',') };
     }
@@ -71,7 +71,7 @@ JoiPlusTemp = JoiPlusTemp.extend((joi: Joi.Root) => ({
   messages: {
     'geojson.invalid': '{{#label}} is not a valid geojson'
   },
-  coerce: (value: any, helper: Joi.CustomHelpers) => {
+  coerce: (value: unknown, helper: Joi.CustomHelpers) => {
     let geojson: GeometryObject;
     try {
       if (typeof value === 'string') {

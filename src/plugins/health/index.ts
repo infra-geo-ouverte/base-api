@@ -12,7 +12,7 @@ export default (): IPlugin => {
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
       const optsHealth: HealthOptions = options.health || {};
 
-      const opts: any = {
+      const opts = {
         path: optsHealth.path || (options?.global?.baseHref || '') + '/health',
         tags: ['health'],
         responses: {

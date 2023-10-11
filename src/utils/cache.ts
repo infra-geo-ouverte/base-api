@@ -31,7 +31,7 @@ async function scanRedis(
   client: Redis, pattern: string, callback: (client: Redis, keys: string[]) => Promise<void>, cursor = '0'
 ) {
   return new Promise((resolve, _reject) => {
-    client.scan(cursor, 'MATCH', pattern, 'COUNT', '100', async (err: any, reply: [string, string[]]) => {
+    client.scan(cursor, 'MATCH', pattern, 'COUNT', '100', async (err: unknown, reply: [string, string[]]) => {
       if (err) {
         throw err;
       }
@@ -56,7 +56,7 @@ async function deleteKeys(client: Redis, keys: string[]) {
   await client.pipeline().del(keys).exec();
 }
 
-function setReplicats(cacheKey: string, value: any, ttl: number) {
+function setReplicats(cacheKey: string, value: unknown, ttl: number) {
   const envelope = {
       item: value,
       stored: Date.now(),
@@ -81,16 +81,16 @@ export function cache({ expiresIn = 86400000, replicats = true } = {}) {
   return (
     target: object,
     propertyKey: string,
-    descriptor: TypedPropertyDescriptor<(...args: any[]) => any>
+    descriptor: TypedPropertyDescriptor<(...args: unknown[]) => unknown>
   ) => {
     const targetName = target.constructor.name;
-    const cacheServer: any = Server.getServer().cache({
+    const cacheServer = Server.getServer().cache({
       expiresIn: expiresIn,
       segment: `${targetName}.${propertyKey}`,
       generateFunc: async (request: {
         id: string;
-        method: (...args: any[]) => any;
-        args: any[];
+        method: (...args: unknown[]) => unknown;
+        args: unknown[];
       }) => {
         const data = await request.method.apply(this, request.args);
         if (replicats && cacheConfig) {
@@ -101,9 +101,10 @@ export function cache({ expiresIn = 86400000, replicats = true } = {}) {
       generateTimeout: cacheConfig?.timeout || 60000
     });
     return {
-      value: function(...args: any[]) {
+      value: function(...args: unknown[]) {
         const cacheId = md5(inspect(args));
-        return cacheServer.get({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return (cacheServer as any).get({
           id: cacheId,
           method: descriptor.value.bind(this),
           args
@@ -117,9 +118,9 @@ export function dropCache(className = '*', functionName = '*', replicats = true)
   if (!loaded) {
     init();
   }
-  return (_target: object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(...args: any[]) => any>) => {
+  return (_target: object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(...args: unknown[]) => unknown>) => {
     const originalMethod = descriptor.value;
-    descriptor.value = async function(...args: any[]) {
+    descriptor.value = async function(...args: unknown[]) {
       if (cacheConfig && cacheConfig.engine === 'redis') {
         const pattern = `${cacheConfig.partition}:${className}.${functionName}:*`;
         await scanRedis(redisClient, pattern, deleteKeys);

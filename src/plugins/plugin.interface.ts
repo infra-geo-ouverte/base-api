@@ -1,7 +1,10 @@
 import * as Hapi from '@hapi/hapi';
 
 export interface IPluginOptions {
-  [key: string]: any;
+  global?: {
+    baseHref: string;
+  }
+  [key: string]: unknown;
 }
 
 export interface IPlugin {

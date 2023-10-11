@@ -12,5 +12,6 @@ export function log(tags: string | string[], data: string | object, requestId?: 
   const timestamp = Date.now();
   const field = data instanceof Error ? 'error' : 'data';
   const event = [{ info: { id: requestId } }, { timestamp, tags, [field]: data }];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (Server.getServer() as any)._core.events.emit({ name: 'request', channel: 'app', tags }, event);
 }

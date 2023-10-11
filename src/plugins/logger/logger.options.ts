@@ -1,6 +1,15 @@
+export enum LoggerLevel {
+  trace = 'trace',
+  debug = 'debug',
+  info = 'info',
+  warn = 'warn',
+  error = 'error',
+  fatal = 'fatal'
+}
+
 export interface LoggerOptions {
   exclude?: {
     ips: string[];
   };
-  level?: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+  level?: LoggerLevel;
 }

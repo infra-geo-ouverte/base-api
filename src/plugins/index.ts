@@ -1,5 +1,3 @@
-/* eslint @typescript-eslint/no-var-requires: 1 */
-
 import { IPlugin } from './plugin.interface';
 import { default as apm} from './apm';
 import { default as devErrors} from './dev-errors';
@@ -29,6 +27,7 @@ export function getPlugin(name: string) {
   if (PLUGINS[name]) {
     return PLUGINS[name]();
   }
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   return require(`${Config.getBasePath()}/plugins/${name}`).default();
 }
 
