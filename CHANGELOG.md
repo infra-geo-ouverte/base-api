@@ -1,3 +1,13 @@
+# [2.0.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.7.0...2.0.0) (2023-10-11)
+
+
+### Features
+
+* **deps:** upgrade dependencies ([dfdbf89](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/dfdbf89228c4422d4f5ca9343c3b2097b8942216))
+* **eslint:** change tslint to eslint ([b5408a7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/b5408a799a7cd893378503feb15205ae653f5cc8))
+
+
+
 # [1.7.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/1.6.0...1.7.0) (2023-09-25)
 
 
