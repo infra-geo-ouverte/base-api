@@ -1,3 +1,12 @@
+## [2.0.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.2...2.0.3) (2023-10-12)
+
+
+### Bug Fixes
+
+* **cache:** fix cache after update ([fad896a](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/fad896a5ab91a6fdec4f356c24dc9d2a87e34c17))
+
+
+
 ## [2.0.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.1...2.0.2) (2023-10-12)
 
 
