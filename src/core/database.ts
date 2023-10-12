@@ -82,7 +82,7 @@ export class IDatabase {
       });
     }
     // Global error Handler
-    this.sequelize.query = (...args) => {
+    this.sequelize.query = function(...args) {
       return Sequelize.prototype.query.apply(this, args).catch((err) => {
         const request = args[1]?.request || server;
         request.log(['error', 'database'], `\u001b[1m${err}`);
