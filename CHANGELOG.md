@@ -1,3 +1,12 @@
+## [2.0.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.1...2.0.2) (2023-10-12)
+
+
+### Bug Fixes
+
+* **sequelize:** global error handler ([9f5f61e](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/9f5f61eca412ac5b1027fad1fdf89d439e294763))
+
+
+
 ## [2.0.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.0...2.0.1) (2023-10-11)
 
 
