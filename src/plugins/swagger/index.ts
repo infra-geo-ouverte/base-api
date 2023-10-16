@@ -6,7 +6,7 @@ import { SwaggerSchema, SwaggerOptions } from './swagger.options';
 export default (): IPlugin => {
   return {
     name: 'Swagger Documentation',
-    version: '1.0.0',
+    version: '1.0.1',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
       const serverHref = Config.getServerConfig().baseHref || '';
       const apiHref = (options?.global?.baseHref || '');
@@ -15,7 +15,7 @@ export default (): IPlugin => {
       const pck = require(`${Config.getBasePath()}/../package.json`);
       const swaggerOptions: SwaggerOptions = Object.assign(
         {
-          basePath: '/apis/',
+          basePath: '/',
           jsonRoutePath: apiHref + '/swagger.json',
           routesBasePath: apiHref + '/swaggerui/',
           documentationPath: apiHref + '/docs/api',
