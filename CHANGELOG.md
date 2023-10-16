@@ -1,3 +1,12 @@
+## [2.0.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.3...2.0.4) (2023-10-16)
+
+
+### Bug Fixes
+
+* **swagger:** default base path ([8598344](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/859834489755ca2d239d0b129587372fe7b4bb58))
+
+
+
 ## [2.0.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.2...2.0.3) (2023-10-12)
 
 
