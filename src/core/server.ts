@@ -73,11 +73,16 @@ export class Server {
       cache: redisCacheConfig,
       routes: {
         cache: {
-          expiresIn: 86400 * 1000 // 24 hour
+          expiresIn: configs.routesOptions?.clientCache?.expiresIn || 86400 * 1000 // 24 hour
         },
         payload: {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           multipart: true as any
+        },
+        security: {
+          hsts: configs.routesOptions?.security?.hsts || true,
+          xframe: configs.routesOptions?.security?.xframe || 'deny',
+          xss: configs.routesOptions?.security?.xss || 'enabled'
         },
         validate: {
           failAction: failAction(),

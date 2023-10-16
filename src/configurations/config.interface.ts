@@ -16,6 +16,7 @@ export interface IRedisCacheConfig {
 export interface IServerConfiguration {
   port: number;
   routes: string[];
+  routesOptions?: IRouteOptions;
   plugins: string[];
   pluginsOptions: IPluginOptions;
   host?: string;
@@ -23,6 +24,16 @@ export interface IServerConfiguration {
   baseHref?: string;
 }
 
+export interface IRouteOptions {
+  clientCache?: {
+    expiresIn?: number;
+  }
+  security?: {
+    hsts?: boolean;
+    xframe?: boolean | 'deny' | 'sameorigin';
+    xss?: false | 'enabled' | 'disabled';
+  }
+}
 export interface IDatabaseConfiguration {
   dialect?: 'sqlite' | 'postgres';
   models?: string[];
