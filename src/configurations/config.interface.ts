@@ -5,12 +5,14 @@ export interface IRedisCacheConfig {
   host: string;
   partition: string;
   port?: number;
+  db?: string;
+  tls?: boolean;
   timeout?: number;
-  replicats?: [{
+  sentinels?: [{
     host: string;
-    port?: number;
-    enabled?: boolean;
+    port: number;
   }];
+  sentinelName?: string;
 }
 
 export interface IServerConfiguration {
@@ -47,6 +49,7 @@ export interface ISqliteConfiguration extends IDatabaseConfiguration {
 
 export interface IPostgresConfiguration extends IDatabaseConfiguration {
   dialect: 'postgres';
+  proxyHost?: string;
   host: string;
   port: number;
   dbname: string;

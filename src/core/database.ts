@@ -45,7 +45,7 @@ export class IDatabase {
     } else if (dbConf.dialect === 'postgres') {
       const dbPG: IPostgresConf = dbConfigs as IPostgresConf;
       this.sequelize = new Sequelize(dbPG.dbname, dbPG.username, dbPG.password, {
-        host: dbPG.host,
+        host: dbPG.proxyHost || dbPG.host,
         port: dbPG.port,
         dialect: dbPG.dialect,
         logging: (data: string, options) => {
@@ -65,7 +65,7 @@ export class IDatabase {
         },
         dialectOptions: {
           ssl: dbPG.ssl || false,
-          statement_timeout: dbPG.timeout
+          statement_timeout: dbPG.proxyHost ? undefined : dbPG.timeout
         },
         pool: {
           max: dbPG.pool?.max || 5,

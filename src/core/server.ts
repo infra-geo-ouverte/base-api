@@ -54,7 +54,12 @@ export class Server {
           constructor: require('@hapi/catbox-redis').Engine,
           options: {
             host: configs.cache.host,
-            partition: configs.cache.partition
+            partition: configs.cache.partition,
+            port: configs.cache.port || 6379,
+            db: configs.cache.db,
+            tls: configs.cache.tls ? {} : undefined,
+            sentinels: configs.cache.sentinels,
+            sentinelName: configs.cache.sentinelName
           } as unknown
         }
       };
