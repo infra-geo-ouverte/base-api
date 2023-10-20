@@ -29,6 +29,7 @@ export class IDatabase {
 
   async initDatabase(server: Hapi.Server) {
     const dbConfigs = Config.getDatabaseConfig();
+    const dbProxyConfig = Config.getDatabaseProxyConfig();
 
     type IDBConf = IDatabaseConfiguration;
     type IDBStringConf = IDBStringConfiguration;
@@ -45,8 +46,8 @@ export class IDatabase {
     } else if (dbConf.dialect === 'postgres') {
       const dbPG: IPostgresConf = dbConfigs as IPostgresConf;
       this.sequelize = new Sequelize(dbPG.dbname, dbPG.username, dbPG.password, {
-        host: dbPG.proxyHost || dbPG.host,
-        port: dbPG.port,
+        host: dbProxyConfig?.host || dbPG.host,
+        port: dbProxyConfig?.port || dbPG.port,
         dialect: dbPG.dialect,
         logging: (data: string, options) => {
           const request = (options as QueryOptions).request;

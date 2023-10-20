@@ -1,7 +1,7 @@
 import * as nconf from 'nconf';
 
 import { ObjectUtils } from '../utils/object-utils'
-import { IDataConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions } from './config.interface';
+import { IDataConfiguration, IDatabaseProxyConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions } from './config.interface';
 
 let configs: nconf.Provider;
 let path: string;
@@ -59,6 +59,10 @@ export class Config {
 
   static getDatabaseConfig(): IDataConfiguration {
     return configs?.get('database');
+  }
+
+  static getDatabaseProxyConfig(): IDatabaseProxyConfiguration {
+    return configs?.get('databaseProxy');
   }
 
   static getServerConfig(): IServerConfiguration {

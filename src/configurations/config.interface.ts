@@ -54,7 +54,6 @@ export interface ISqliteConfiguration extends IDatabaseConfiguration {
 
 export interface IPostgresConfiguration extends IDatabaseConfiguration {
   dialect: 'postgres';
-  proxyHost?: string;
   host: string;
   port: number;
   dbname: string;
@@ -68,6 +67,11 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
     acquire?: number;
     idle?: number;
   }
+}
+
+export interface IDatabaseProxyConfiguration {
+  host: string;
+  port: number;
 }
 
 export interface IDBStringConfiguration extends IDatabaseConfiguration {
