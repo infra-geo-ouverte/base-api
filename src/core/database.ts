@@ -65,8 +65,8 @@ export class IDatabase {
           }
         },
         dialectOptions: {
-          ssl: dbPG.ssl || dbPG.proxyHost ? true : false,
-          statement_timeout: dbPG.proxyHost ? undefined : dbPG.timeout
+          ssl: dbPG.ssl || dbProxyConfig ? true : false,
+          statement_timeout: dbProxyConfig ? undefined : dbPG.timeout
         },
         pool: {
           max: dbPG.pool?.max || 5,
