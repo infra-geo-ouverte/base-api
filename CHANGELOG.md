@@ -1,3 +1,17 @@
+## [2.1.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.1...2.1.2) (2023-10-20)
+
+
+### Bug Fixes
+
+* **cache:** add obsolete replicats config ([aed0997](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/aed099766da6885677dfdae396201c0b053b9ed9))
+
+
+### Features
+
+* **cache:** add tls ([c5af649](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/c5af6498cdafd62ceae9aed708cef2b90484a261))
+
+
+
 ## [2.1.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.0...2.1.1) (2023-10-20)
 
 
