@@ -1,3 +1,13 @@
+## [2.1.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.3...2.1.4) (2023-10-20)
+
+
+### Features
+
+* **database:** add proxy config ([cd18373](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/cd183736be558ad76136fae23af5da85752b1d19))
+* **database:** add proxy config ([0ed460b](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/0ed460b1e0064c981c633de3b7fd047c9aa4532e))
+
+
+
 ## [2.1.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.2...2.1.3) (2023-10-20)
 
 
