@@ -8,6 +8,11 @@ export interface IRedisCacheConfig {
   db?: string;
   tls?: boolean;
   timeout?: number;
+  replicats?: [{
+    host: string;
+    port?: number;
+    enabled?: boolean;
+  }];
   sentinels?: [{
     host: string;
     port: number;
