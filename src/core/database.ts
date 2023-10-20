@@ -64,7 +64,8 @@ export class IDatabase {
           }
         },
         dialectOptions: {
-          statement_timeout: dbPG.timeout || 60000
+          ssl: dbPG.ssl || false,
+          statement_timeout: dbPG.timeout
         },
         pool: {
           max: dbPG.pool?.max || 5,

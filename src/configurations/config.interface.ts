@@ -53,6 +53,7 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
   username?: string;
   password?: string;
   timeout?: number;
+  ssl?: boolean;
   pool?: {
     max?: number;
     min?: number;
