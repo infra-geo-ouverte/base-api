@@ -1,3 +1,12 @@
+## [2.1.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.0...2.1.1) (2023-10-20)
+
+
+### Features
+
+* **database:** add ssl param and timeout optional ([a09fa74](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/a09fa74172675b95d72f1a9227ff02fe2d281d31))
+
+
+
 # [2.1.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.0.4...2.1.0) (2023-10-16)
 
 
