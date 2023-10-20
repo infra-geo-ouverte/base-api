@@ -1,3 +1,12 @@
+## [2.1.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.2...2.1.3) (2023-10-20)
+
+
+### Features
+
+* **database:** force ssl when proxyHost ([04c1483](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/04c1483de2c66fc7be1bbfe748bebb2f0c43fc5f))
+
+
+
 ## [2.1.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.1...2.1.2) (2023-10-20)
 
 
