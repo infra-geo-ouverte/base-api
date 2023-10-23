@@ -1,3 +1,12 @@
+## [2.1.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.4...2.1.5) (2023-10-23)
+
+
+### Features
+
+* **sanitizer:** sanitize html attribute value ([ce8df3b](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/ce8df3bb8fbb864e7e378aad7ab64c0b82bc8182))
+
+
+
 ## [2.1.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.3...2.1.4) (2023-10-20)
 
 
