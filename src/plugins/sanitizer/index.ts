@@ -43,11 +43,11 @@ export default (): IPlugin => {
             Object.keys(request.query).length
           ) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (request as any).payload = Sanitizer.sanitize(request.payload);
+            (request as any).payload = Sanitizer.sanitize(request.payload, sanitizerOpt);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (request as any).query = Sanitizer.sanitize(request.query);
+            (request as any).query = Sanitizer.sanitize(request.query, sanitizerOpt);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (request as any).params = Sanitizer.sanitize(request.params);
+            (request as any).params = Sanitizer.sanitize(request.params, sanitizerOpt);
           }
 
           return h.continue;
