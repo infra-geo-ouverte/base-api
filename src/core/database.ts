@@ -3,7 +3,7 @@
 import * as Hapi from '@hapi/hapi';
 import * as Boom from '@hapi/boom';
 import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
-import { Sequelize } from 'sequelize-typescript';
+import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import * as camelcase from 'camelcase';
 
 import {
@@ -49,6 +49,8 @@ export class IDatabase {
         host: dbProxyConfig?.host || dbPG.host,
         port: dbProxyConfig?.port || dbPG.port,
         dialect: dbPG.dialect,
+        schema: dbPG.schema,
+        searchPath: dbPG.searchPath || 'DEFAULT',
         logging: (data: string, options) => {
           const request = (options as QueryOptions).request;
           const requestId = (options as QueryOptions).requestId;
@@ -66,7 +68,8 @@ export class IDatabase {
         },
         dialectOptions: {
           ssl: dbPG.ssl || dbProxyConfig ? true : false,
-          statement_timeout: dbProxyConfig ? undefined : dbPG.timeout
+          statement_timeout: dbProxyConfig ? undefined : dbPG.timeout,
+          prependSearchPath: dbPG.searchPath ? true : undefined
         },
         pool: {
           max: dbPG.pool?.max || 5,
@@ -74,7 +77,7 @@ export class IDatabase {
           acquire: dbPG.pool?.acquire || 30000,
           idle: dbPG.pool?.idle || 10000
         }
-      });
+      } as SequelizeOptions);
     } else {
       const dbSqlite: ISqliteConf = dbConfigs as ISqliteConf;
       this.sequelize = new Sequelize('database', 'username', 'password', {

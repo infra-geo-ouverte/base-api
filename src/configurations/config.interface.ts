@@ -57,6 +57,8 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
   host: string;
   port: number;
   dbname: string;
+  schema?: string;
+  searchPath?: string;
   username?: string;
   password?: string;
   timeout?: number;
