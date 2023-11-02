@@ -1,3 +1,12 @@
+# [2.2.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.5...2.2.0) (2023-11-02)
+
+
+### Features
+
+* **db:** add searchPath and schema support ([acc4f98](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/acc4f98391f072359c20c89bd5af26d4b9dc3531))
+
+
+
 ## [2.1.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.4...2.1.5) (2023-10-23)
 
 
