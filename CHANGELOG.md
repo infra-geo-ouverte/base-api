@@ -1,3 +1,12 @@
+## [2.2.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.0...2.2.1) (2023-11-17)
+
+
+### Bug Fixes
+
+* **plugins:** load plugins async ([d1359fb](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/d1359fb69e990141533122bbb206887093cb4698))
+
+
+
 # [2.2.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.1.5...2.2.0) (2023-11-02)
 
 
