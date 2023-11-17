@@ -9,30 +9,30 @@ export interface IRoute {
   init(server: Hapi.Server): void;
 }
 
-const loadPlugins = (configs: IServerConfiguration, server: Hapi.Server) => {
+const loadPlugins = async (configs: IServerConfiguration, server: Hapi.Server) => {
   //  Setup Hapi Plugins
   const plugins: string[] = configs.plugins || [];
   const pluginOptions: IPluginOptions = configs.pluginsOptions || {};
   pluginOptions.database = database;
   pluginOptions.configs = configs;
 
-  plugins.forEach((pluginName: string) => {
+  await plugins.forEach(async (pluginName: string) => {
     const plugin: IPlugin = getPlugin(pluginName);
     const version = plugin.version;
     const name = plugin.name;
     server.log('info', `Register Plugin ${name} v${version}`);
-    plugin.register(server, pluginOptions);
+    await plugin.register(server, pluginOptions);
   });
   server.log('info', 'Plugins loaded');
 };
 
-const loadRoutes = (configs: IServerConfiguration, server: Hapi.Server) => {
+const loadRoutes = async (configs: IServerConfiguration, server: Hapi.Server) => {
   server.log('info', 'Routes loading');
   const routes: string[] = configs.routes || [];
-  routes.forEach((routeName: string) => {
+  await routes.forEach(async (routeName: string) => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Route: IRoute = require(`${Config.getBasePath()}/${routeName}`);
-    Route.init(server);
+    await Route.init(server);
   });
   server.log('info', 'Routes loaded', Date.now());
 };
