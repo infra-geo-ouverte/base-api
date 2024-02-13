@@ -11,7 +11,7 @@ export default (): IPlugin => {
     register: async (server: Hapi.Server, options: IPluginOptions) => {
       const apmOptions: ApmOptions | Record<string, never> = options.apm as ApmOptions|| {};
       if (!apmOptions.name || !apmOptions.url) {
-        server.log('Warn', 'APM options are required');
+        server.logger.warn('APM options are required');
         return;
       }
 

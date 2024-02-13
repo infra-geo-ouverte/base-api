@@ -4,6 +4,7 @@ import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
 import { failAction } from '../utils';
 import { Config, IServerConfiguration } from '../configurations';
 import { database } from './database';
+import HapiCatboxRedis from '@hapi/catbox-redis';
 
 export interface IRoute {
   init(server: Hapi.Server): void;
@@ -23,18 +24,18 @@ const loadPlugins = async (configs: IServerConfiguration, server: Hapi.Server) =
     server.log('info', `Register Plugin ${name} v${version}`);
     await plugin.register(server, pluginOptions);
   });
-  server.log('info', 'Plugins loaded');
+  server.logger.info('Plugins loaded');
 };
 
 const loadRoutes = async (configs: IServerConfiguration, server: Hapi.Server) => {
-  server.log('info', 'Routes loading');
+  server.logger.info('Routes loading');
   const routes: string[] = configs.routes || [];
-  await routes.forEach(async (routeName: string) => {
+  routes.forEach(async (routeName: string) => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const Route: IRoute = require(`${Config.getBasePath()}/${routeName}`);
-    await Route.init(server);
+    Route.init(server);
   });
-  server.log('info', 'Routes loaded', Date.now());
+  server.logger.info('Routes loaded', Date.now());
 };
 
 let serverHapi: Hapi.Server;
@@ -51,7 +52,7 @@ export class Server {
       redisCacheConfig = {
         provider: {
           // eslint-disable-next-line @typescript-eslint/no-var-requires
-          constructor: require('@hapi/catbox-redis').Engine,
+          constructor: HapiCatboxRedis.Engine,
           options: {
             host: configs.cache.host,
             partition: configs.cache.partition,
@@ -81,7 +82,6 @@ export class Server {
           expiresIn: configs.routesOptions?.clientCache?.expiresIn || 86400 * 1000 // 24 hour
         },
         payload: {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           multipart: true as any
         },
         security: {
@@ -110,8 +110,8 @@ export class Server {
   static async start() {
     const server = await Server.init(Config.getServerConfig());
     await server.start();
-    server.log('info', `Running environment ${process.env.NODE_ENV || 'dev'}`);
-    server.log('info', `Server running at: ${server.info.uri}`);
+    server.logger.info(`Running environment ${process.env.NODE_ENV || 'dev'}`);
+    server.logger.info(`Server running at: ${server.info.uri}`);
     if (process.send) {
       process.send('ready');
     }

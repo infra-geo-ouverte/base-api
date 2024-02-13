@@ -1,7 +1,8 @@
-import * as Hapi from '@hapi/hapi';
+import Hapi from '@hapi/hapi';
 
 import { IPlugin, IPluginOptions } from '../plugin.interface';
 import { RouteOptions } from './route.options';
+import Blipp from 'blipp';
 
 export default (): IPlugin => {
   return {
@@ -11,7 +12,7 @@ export default (): IPlugin => {
       const opts: RouteOptions = options.route || {};
 
       await server.register({
-        plugin: require('blipp'),
+        plugin: Blipp,
         options: opts
       });
     }

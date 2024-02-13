@@ -1,7 +1,10 @@
-import * as Hapi from '@hapi/hapi';
+import Hapi from '@hapi/hapi';
 import { IPlugin, IPluginOptions } from '../plugin.interface';
 import { Config } from '../../configurations';
 import { SwaggerSchema, SwaggerOptions } from './swagger.options';
+import HapiInert from '@hapi/inert';
+import HapiVision from '@hapi/vision';
+import HapiSwagger from 'hapi-swagger';
 
 export default (): IPlugin => {
   return {
@@ -11,8 +14,7 @@ export default (): IPlugin => {
       const serverHref = Config.getServerConfig().baseHref || '';
       const apiHref = (options?.global?.baseHref || '');
       const result = SwaggerSchema.validate(options.swagger);
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const pck = require(`${Config.getBasePath()}/../package.json`);
+      const pck = await import(`${Config.getBasePath()}/../package.json`);
       const swaggerOptions: SwaggerOptions = Object.assign(
         {
           basePath: '/',
@@ -35,10 +37,10 @@ export default (): IPlugin => {
       }
 
       await server.register([
-        require('@hapi/inert'),
-        require('@hapi/vision'),
+        HapiInert,
+        HapiVision,
         {
-          plugin: require('hapi-swagger'),
+          plugin: HapiSwagger,
           options: swaggerOptions
         }
       ]);

@@ -1,7 +1,14 @@
 import * as nconf from 'nconf';
 
-import { ObjectUtils } from '../utils/object-utils'
-import { IDataConfiguration, IDatabaseProxyConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions, IConfig } from './config.interface';
+import { ObjectUtils } from '../utils/object-utils';
+import {
+  IDataConfiguration,
+  IDatabaseProxyConfiguration,
+  IServerConfiguration,
+  IMailConfiguration,
+  IConfigOptions,
+  IConfig
+} from './config.interface';
 
 let configs: nconf.Provider;
 let path: string;
@@ -46,7 +53,7 @@ export class Config {
         file: basePath + '/' + relPath
       });
 
-    return configs
+    return configs;
   }
 
   static getConfig(key?: string) {

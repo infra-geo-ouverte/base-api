@@ -1,5 +1,6 @@
 import { IPlugin } from '../plugin.interface';
-import * as Hapi from '@hapi/hapi';
+import Hapi from '@hapi/hapi';
+import HapiDevErrors from 'hapi-dev-errors';
 
 export default (): IPlugin => {
   return {
@@ -11,7 +12,7 @@ export default (): IPlugin => {
       };
 
       await server.register({
-        plugin: require('hapi-dev-errors'),
+        plugin: HapiDevErrors,
         options: opts
       });
     }

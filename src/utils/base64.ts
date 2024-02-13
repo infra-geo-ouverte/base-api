@@ -1,4 +1,3 @@
-/* tslint:disable */
 export class Base64 {
   private static PADCHAR: string = '=';
   private static ALPHA: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';

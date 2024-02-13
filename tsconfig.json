@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "outDir": "./build",
-    "target": "es6",
+    "target": "ESNext",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "esModuleInterop": true,
     "noUnusedLocals": true,
-    "lib": ["es7", "dom"],
-    "typeRoots": ["./node_modules/@types"]
+    "lib": ["ESNext", "dom"]
   }
 }

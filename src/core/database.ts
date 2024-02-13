@@ -1,10 +1,8 @@
-/* eslint prefer-rest-params: 1 */
-
 import * as Hapi from '@hapi/hapi';
 import * as Boom from '@hapi/boom';
 import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
-import * as camelcase from 'camelcase';
+import camelCase from 'camelcase';
 
 import {
   Config,
@@ -63,7 +61,7 @@ export class IDatabase {
           } else if (requestId) {
             log(tags, data, requestId);
           } else {
-            server.log(tags, data);
+            server.logger.info('database', data);
           }
         },
         dialectOptions: {
@@ -87,7 +85,7 @@ export class IDatabase {
       });
     }
     // Global error Handler
-    this.sequelize.query = function(...args) {
+    this.sequelize.query = function (...args) {
       return Sequelize.prototype.query.apply(this, args).catch((err) => {
         const request = args[1]?.request || server;
         request.log(['error', 'database'], `\u001b[1m${err}`);
@@ -99,16 +97,16 @@ export class IDatabase {
     if (dbConfigs.models) {
       for (const modelName of dbConfigs.models) {
         this.sequelize.addModels([`${Config.getBasePath()}/${modelName}/*.model.*`], (filename, member) => {
-          const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
-            pascalCase: true,
+          const className = camelCase(filename.substring(0, filename.indexOf('.model')), {
+            pascalCase: true
           });
           return className === member;
         });
       }
     } else {
       this.sequelize.addModels([`${Config.getBasePath()}/**/*.model.*`], (filename, member) => {
-        const className = camelcase(filename.substring(0, filename.indexOf('.model')), {
-          pascalCase: true,
+        const className = camelCase(filename.substring(0, filename.indexOf('.model')), {
+          pascalCase: true
         });
         return className === member;
       });
