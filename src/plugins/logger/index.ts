@@ -33,7 +33,7 @@ export default (): IPlugin => {
         }
       };
 
-      return server.register({
+      await server.register({
         plugin: HapiPino,
         options: pinoOptions
       });

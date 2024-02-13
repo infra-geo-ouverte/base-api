@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 import { GeometryObject } from 'geojson';
 
 let JoiPlusTemp = Joi.extend((joi: Joi.Root) => ({

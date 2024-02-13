@@ -1,4 +1,4 @@
-import * as md5 from 'md5';
+import md5 from 'md5';
 import { inspect } from 'util';
 import Redis from 'ioredis';
 

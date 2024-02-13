@@ -1,5 +1,5 @@
-import * as Hapi from '@hapi/hapi';
-import * as Joi from 'joi';
+import Hapi from '@hapi/hapi';
+import Joi from 'joi';
 import { IPlugin, IPluginOptions, getPlugin } from '../plugins';
 import { failAction } from '../utils';
 import { Config, IServerConfiguration } from '../configurations';
@@ -17,13 +17,13 @@ const loadPlugins = async (configs: IServerConfiguration, server: Hapi.Server) =
   pluginOptions.database = database;
   pluginOptions.configs = configs;
 
-  await plugins.forEach(async (pluginName: string) => {
-    const plugin: IPlugin = getPlugin(pluginName);
+  for (const pluginName of plugins) {
+    const plugin: IPlugin = await getPlugin(pluginName);
     const version = plugin.version;
     const name = plugin.name;
     server.log('info', `Register Plugin ${name} v${version}`);
     await plugin.register(server, pluginOptions);
-  });
+  }
   server.logger.info('Plugins loaded');
 };
 
@@ -31,8 +31,7 @@ const loadRoutes = async (configs: IServerConfiguration, server: Hapi.Server) =>
   server.logger.info('Routes loading');
   const routes: string[] = configs.routes || [];
   routes.forEach(async (routeName: string) => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const Route: IRoute = require(`${Config.getBasePath()}/${routeName}`);
+    const Route: IRoute = await import(`${Config.getBasePath()}/${routeName}`);
     Route.init(server);
   });
   server.logger.info('Routes loaded', Date.now());

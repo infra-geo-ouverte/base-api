@@ -1,5 +1,5 @@
-import * as Hapi from '@hapi/hapi';
-import * as Boom from '@hapi/boom';
+import Hapi from '@hapi/hapi';
+import Boom from '@hapi/boom';
 import { QueryOptions as SequelizeQueryOptions } from 'sequelize';
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import camelCase from 'camelcase';

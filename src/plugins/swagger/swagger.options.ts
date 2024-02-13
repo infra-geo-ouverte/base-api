@@ -1,4 +1,4 @@
-import * as Joi from 'joi';
+import Joi from 'joi';
 
 export const SwaggerSchema = Joi.object().keys({
   basePath: Joi.string().optional(),

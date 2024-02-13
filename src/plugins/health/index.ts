@@ -1,6 +1,6 @@
-import * as Hapi from '@hapi/hapi';
-import * as Boom from '@hapi/boom';
-import * as Joi from 'joi';
+import Hapi from '@hapi/hapi';
+import Boom from '@hapi/boom';
+import Joi from 'joi';
 
 import { IPlugin, IPluginOptions } from '../plugin.interface';
 import { HealthOptions } from './health.options';

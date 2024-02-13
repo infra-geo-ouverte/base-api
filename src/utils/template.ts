@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as Handlebars from 'handlebars';
+import fs from 'fs';
+import Handlebars from 'handlebars';
 
 export function registerPartialTemplate(path: string) {
   fs.readdirSync(path)

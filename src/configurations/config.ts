@@ -1,4 +1,4 @@
-import * as nconf from 'nconf';
+import nconf from 'nconf';
 
 import { ObjectUtils } from '../utils/object-utils';
 import {

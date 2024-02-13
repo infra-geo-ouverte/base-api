@@ -1,4 +1,4 @@
-import * as nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer';
 import { SES, SendRawEmailCommand } from '@aws-sdk/client-ses';
 
 import { Config } from '../configurations';

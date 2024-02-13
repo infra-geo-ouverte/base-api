@@ -1,5 +1,5 @@
-import * as Joi from 'joi';
-import * as Boom from '@hapi/boom';
+import Joi from 'joi';
+import Boom from '@hapi/boom';
 
 export class UserValidator {
   static userValidator = Joi.object({

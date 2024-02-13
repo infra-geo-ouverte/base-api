@@ -1,4 +1,4 @@
-import * as Hapi from '@hapi/hapi';
+import Hapi from '@hapi/hapi';
 
 export interface IPluginOptions {
   global?: {

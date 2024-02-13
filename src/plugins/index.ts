@@ -19,12 +19,12 @@ export const PLUGINS: {[key: string]: () => IPlugin} = {
   swagger
 };
 
-export function getPlugin(name: string): IPlugin {
+export async function getPlugin(name: string): Promise<IPlugin> {
   if (PLUGINS[name]) {
     return PLUGINS[name]();
   }
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  return require(`${Config.getBasePath()}/plugins/${name}`).default();
+  const plugin = await import(`${Config.getBasePath()}/plugins/${name}`);
+  return plugin.default();
 }
 
 export * from './apm';

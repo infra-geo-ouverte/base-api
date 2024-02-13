@@ -1,5 +1,5 @@
-import * as Hapi from '@hapi/hapi';
-import * as apm from 'elastic-apm-node';
+import Hapi from '@hapi/hapi';
+import apm from 'elastic-apm-node';
 
 import { IPlugin, IPluginOptions } from '../plugin.interface';
 import { ApmOptions } from './apm.options';

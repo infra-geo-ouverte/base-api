@@ -1,5 +1,5 @@
-import * as Hapi from '@hapi/hapi';
-import * as Joi from 'joi';
+import Hapi from '@hapi/hapi';
+import Joi from 'joi';
 
 export interface ValidationError extends Joi.ValidationError {
   output: ValidationErrorOutput;
