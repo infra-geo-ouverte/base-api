@@ -10,6 +10,7 @@ export default (): IPlugin => {
     version: '2.0.0',
     register: async (server: Hapi.Server, options: IPluginOptions = {}) => {
       const loggerOptions: LoggerOptions = Object.assign({ level: LoggerLevel.info }, options.logger);
+      const debug = loggerOptions.level === LoggerLevel.debug || loggerOptions.level === LoggerLevel.trace;
 
       const pinoOptions: HapiPino.Options = {
         level: loggerOptions.level,
@@ -17,16 +18,25 @@ export default (): IPlugin => {
           target: 'pino-pretty',
           options: {
             colorize: true,
-            translateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",
-            singleLine: true,
+            translateTime: "SYS:standard",
+            singleLine: !debug,
+            ignore: debug ? undefined : 'res,req,responseTime,queryParams.key'
           }
         },
-        logPayload: false,
+        logPayload: debug,
         logQueryParams: true,
         logRouteTags: true,
-        logRequestStart: false,
-        ignorePaths: [],
-        ignoreTags: [],
+        logRequestStart: debug,
+        ignorePaths: debug ? [] : ['/health'],
+        ignoreTags: debug ? [] : ['healthcheck'],
+        customRequestCompleteMessage: (request, responseTime) => {
+            const ip = request.headers['x-real-ip'] ? request.headers['x-real-ip'] : '';
+            const username = request.headers['x-consumer-username'] ? ` - ${request.headers['x-consumer-username']}` : '';
+            return `${ip}${username} [response] ${request.method} ${request.path} ${request.raw.res.statusCode} (${responseTime}ms)`;
+        },
+        customRequestErrorMessage: (request, error) => {
+            return error.message;
+        },
         ignoreFunc: (_ignoreOptions, request) => {
           const ip = request.headers ? request.headers['x-real-ip'] : undefined;
           return loggerOptions.exclude && loggerOptions.exclude.ips && loggerOptions.exclude.ips.includes(ip);

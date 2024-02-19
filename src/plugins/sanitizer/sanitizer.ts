@@ -25,7 +25,7 @@ export class Sanitizer {
 
   static sanitizeString(string: string, opt: SanitizerOptions) {
     let stringSanitized = filterXSS(string);
-    
+
     if (opt.escapeHtmlAttrValue) {
       stringSanitized = escapeAttrValue(stringSanitized);
     }

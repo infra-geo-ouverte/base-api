@@ -50,7 +50,6 @@ export class Server {
     if (configs.cache && configs.cache.engine === 'redis') {
       redisCacheConfig = {
         provider: {
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
           constructor: HapiCatboxRedis.Engine,
           options: {
             host: configs.cache.host,
