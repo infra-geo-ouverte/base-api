@@ -1,12 +1,12 @@
 import Hapi from '@hapi/hapi';
 
 import { IPlugin, IPluginOptions } from '../plugin.interface';
-import { Sanitizer } from './sanitizer';
 import {
   defaults,
   SanitizerSchema,
-  SanitizerOptions
 } from './sanitizer.options';
+import { SanitizerOptions } from '../../utils/sanitizer/sanitizer.interface';
+import { Sanitizer } from '../../utils/sanitizer/sanitizer.utils';
 
 export default (): IPlugin => {
   return {

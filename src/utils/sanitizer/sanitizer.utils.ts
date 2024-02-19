@@ -1,6 +1,7 @@
 import { filterXSS, escapeAttrValue } from 'xss';
 import { Readable } from 'stream';
-import { SanitizerOptions } from './sanitizer.options';
+import { SanitizerOptions } from './sanitizer.interface';
+
 export class Sanitizer {
   static sanitize(obj: unknown, opt: SanitizerOptions) {
     if (typeof obj === 'object') {
@@ -11,9 +12,9 @@ export class Sanitizer {
           }
         } else if (!(obj[value] instanceof Readable)) {
           try {
-              obj[value] = JSON.parse(Sanitizer.sanitizeString(JSON.stringify(obj[value]), opt));
+            obj[value] = JSON.parse(Sanitizer.sanitizeString(JSON.stringify(obj[value]), opt));
           } catch {
-              obj[value] = Sanitizer.sanitizeString(obj[value], opt);
+            obj[value] = Sanitizer.sanitizeString(obj[value], opt);
           }
         }
       }
@@ -23,10 +24,10 @@ export class Sanitizer {
     return obj;
   }
 
-  static sanitizeString(string: string, opt: SanitizerOptions) {
+  static sanitizeString(string: string, opt?: SanitizerOptions) {
     let stringSanitized = filterXSS(string);
 
-    if (opt.escapeHtmlAttrValue) {
+    if (opt?.escapeHtmlAttrValue) {
       stringSanitized = escapeAttrValue(stringSanitized);
     }
 
