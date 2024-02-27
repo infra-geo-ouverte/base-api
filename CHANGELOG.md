@@ -1,3 +1,17 @@
+## [3.0.0-next.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...3.0.0-next.0) (2024-02-27)
+
+### Bug Fixes
+
+* async regression remove require and use import ([e2f7f18](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/e2f7f1844d68225dfaf53c4d18009acf91ceea23))
+* **dependencies:** correct vulnerabilities and remove unmaintened deps ([142c7f9](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/142c7f9c8128091347d1c5bb3121c1d02ecbabf3))
+
+
+### Features
+
+* **logger:** ajuster log info ([2545330](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/2545330942a354b8dcb0c1121c04daa58cbd8077))
+
+
+
 ## [2.2.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.2...2.2.3) (2024-06-25)
 
 
