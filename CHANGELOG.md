@@ -1,4 +1,14 @@
-## [3.0.0-next.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...3.0.0-next.0) (2024-02-27)
+# [3.0.0-next.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.0...3.0.0-next.1) (2024-02-29)
+
+
+### Features
+
+* sanitizer handle regex ([97120d5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/97120d56e80c105ffd032a9a962d908d522a5d9a))
+
+
+
+# [3.0.0-next.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...3.0.0-next.0) (2024-02-27)
+
 
 ### Bug Fixes
 
