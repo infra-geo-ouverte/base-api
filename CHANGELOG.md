@@ -1,3 +1,12 @@
+# [3.0.0-next.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.1...3.0.0-next.2) (2024-03-06)
+
+
+### Bug Fixes
+
+* missing dependencies deleted by error ([354e4bb](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/354e4bbdce05b84485167688cacdcfafeca91925))
+
+
+
 # [3.0.0-next.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.0...3.0.0-next.1) (2024-02-29)
 
 
