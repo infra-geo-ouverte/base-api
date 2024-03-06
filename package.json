@@ -2,29 +2,27 @@
   "name": "@igo2/base-api",
   "version": "3.0.0-next.1",
   "description": "Base Api",
-  "main": "build/index.js",
-  "files": [
-    "build",
-    "package-lock.json",
-    "package.json",
-    "README.md",
-    "CHANGELOG.md"
+  "workspaces": [
+    "scripts"
   ],
+  "repository": {
+    "private": true
+  },
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "src/index.ts",
   "scripts": {
     "tsc": "tsc",
-    "build": "rimraf build && npm run tsc",
+    "build": "node scripts/src/build.js",
     "lint": "eslint ./src --ext .ts",
     "test": "npm run lint",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "preversion": "npm run test && npm run build",
     "version": "npm run changelog && git add -A CHANGELOG.md",
-    "postversion": "git push --follow-tags && npm publish"
+    "postversion": "git push --follow-tags && npm publish ./build"
   },
-  "keywords": [],
-  "repository": {
-    "private": true
-  },
-  "license": "UNLICENSED",
   "dependencies": {
     "@aws-sdk/client-ses": "^3.509.0",
     "@hapi/boom": "^10.0.1",
@@ -59,10 +57,6 @@
     "conventional-changelog-cli": "^4.1.0",
     "eslint": "^8.56.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 }

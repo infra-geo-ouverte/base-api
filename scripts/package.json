@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "execa": "^8.0.1"
+  }
+}

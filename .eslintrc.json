@@ -4,7 +4,7 @@
     "plugins": ["@typescript-eslint", "unused-imports"],
     "overrides": [
       {
-        "files": ["*.ts"],
+        "files": ["*.ts", "*.js"],
         "extends": [
           "eslint:recommended",
           "plugin:@typescript-eslint/recommended"
@@ -35,4 +35,3 @@
       }
     ]
   }
-  
