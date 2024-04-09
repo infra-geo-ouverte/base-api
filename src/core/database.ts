@@ -61,7 +61,7 @@ export class IDatabase {
           } else if (requestId) {
             log(tags, data, requestId);
           } else {
-            server.logger.info('database', data);
+            server.log(tags, data);
           }
         },
         dialectOptions: {
