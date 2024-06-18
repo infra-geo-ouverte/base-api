@@ -1,3 +1,12 @@
+# [3.0.0-next.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.3...3.0.0-next.4) (2024-06-18)
+
+
+### Bug Fixes
+
+* **utils:** infer the return type from the property ([bd9f1a8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/bd9f1a81f5ffa1886a36a1714f1bc62de89ab846))
+
+
+
 # [3.0.0-next.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.2...3.0.0-next.3) (2024-04-09)
 
 
