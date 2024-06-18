@@ -1,9 +1,6 @@
 export class ObjectUtils {
   static resolve(obj: object, key: string): unknown {
-    const keysArray = key
-      .replace(/\[/g, '.')
-      .replace(/\]/g, '')
-      .split('.');
+    const keysArray = key.replace(/\[/g, '.').replace(/\]/g, '').split('.');
     let current = obj;
     while (keysArray.length) {
       if (typeof current !== 'object') {
@@ -23,8 +20,8 @@ export class ObjectUtils {
     const output = Object.assign({}, target);
     if (ObjectUtils.isObject(target) && ObjectUtils.isObject(source)) {
       Object.keys(source)
-        .filter(key => !ignoreUndefined || source[key] !== undefined)
-        .forEach(key => {
+        .filter((key) => !ignoreUndefined || source[key] !== undefined)
+        .forEach((key) => {
           if (ObjectUtils.isObject(source[key])) {
             if (!(key in target)) {
               Object.assign(output, { [key]: source[key] });
@@ -43,8 +40,8 @@ export class ObjectUtils {
     const output = {};
     if (ObjectUtils.isObject(obj)) {
       Object.keys(obj)
-        .filter(key => obj[key] !== undefined)
-        .forEach(key => {
+        .filter((key) => obj[key] !== undefined)
+        .forEach((key) => {
           if (ObjectUtils.isObject(obj[key]) || Array.isArray(obj[key])) {
             output[key] = ObjectUtils.removeUndefined(obj[key]);
           } else {
@@ -56,18 +53,18 @@ export class ObjectUtils {
     }
 
     if (Array.isArray(obj)) {
-      return obj.map(o => ObjectUtils.removeUndefined(o));
+      return obj.map((o) => ObjectUtils.removeUndefined(o));
     }
 
     return obj;
   }
 
-  static removeNull(obj: object): unknown {
+  static removeNull<T extends object>(obj: T): T {
     const output = {};
     if (ObjectUtils.isObject(obj)) {
       Object.keys(obj)
-        .filter(key => obj[key] !== null)
-        .forEach(key => {
+        .filter((key) => obj[key] !== null)
+        .forEach((key) => {
           if (ObjectUtils.isObject(obj[key]) || Array.isArray(obj[key])) {
             output[key] = ObjectUtils.removeNull(obj[key]);
           } else {
@@ -75,11 +72,9 @@ export class ObjectUtils {
           }
         });
 
-      return output;
-    }
-
-    if (Array.isArray(obj)) {
-      return obj.map(o => ObjectUtils.removeNull(o));
+      return output as T;
+    } else if (Array.isArray(obj)) {
+      return obj.map((o) => ObjectUtils.removeNull(o)) as T;
     }
 
     return obj;
