@@ -1,3 +1,13 @@
+## [2.2.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...2.2.2) (2024-06-25)
+
+
+### Bug Fixes
+
+* **config:** readConfig add a return for the config ([20dfd4c](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/20dfd4cdfb3c5d5c89eb88002668726ef1dbac4b))
+* **utils:** infer the return type from the property ([91b350a](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/91b350a28acfec1570b316db99b0347e2f9d76ed))
+
+
+
 ## [2.2.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.0...2.2.1) (2023-11-17)
 
 
