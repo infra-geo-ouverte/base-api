@@ -1,13 +1,12 @@
 import * as nconf from 'nconf';
 
 import { ObjectUtils } from '../utils/object-utils'
-import { IDataConfiguration, IDatabaseProxyConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions } from './config.interface';
+import { IDataConfiguration, IDatabaseProxyConfiguration, IServerConfiguration, IMailConfiguration, IConfigOptions, IConfig } from './config.interface';
 
 let configs: nconf.Provider;
 let path: string;
 
 export class Config {
-
   private static defaultsOptions: IConfigOptions = {
     argv: {
       parseValues: true
@@ -20,8 +19,7 @@ export class Config {
     }
   };
 
-  static readConfig(basePath: string, relPath: string, opts: IConfigOptions = {}) {
-
+  static readConfig(basePath: string, relPath: string, opts: IConfigOptions = {}): IConfig {
     path = basePath;
     opts = ObjectUtils.mergeDeep(this.defaultsOptions, opts);
 
@@ -33,20 +31,22 @@ export class Config {
         separator: opts.env.separator,
         parseValues: opts.env.parseValues,
         transform: (obj) => {
-            const regex = new RegExp(`^${opts.env.prefixKey}(${opts.env.separator}|:)`);
-            const match = obj.key.match(regex);
-            if (!match) {
-                return false;
-            }
-            if (opts.env.removePrefixKey) {
-              obj.key = obj.key.replace(match[0], '');
-            }
-            return obj;
+          const regex = new RegExp(`^${opts.env.prefixKey}(${opts.env.separator}|:)`);
+          const match = obj.key.match(regex);
+          if (!match) {
+            return false;
+          }
+          if (opts.env.removePrefixKey) {
+            obj.key = obj.key.replace(match[0], '');
+          }
+          return obj;
         }
       })
       .file({
         file: basePath + '/' + relPath
       });
+
+    return configs
   }
 
   static getConfig(key?: string) {

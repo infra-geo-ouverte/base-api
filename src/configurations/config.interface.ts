@@ -1,5 +1,12 @@
 import { IPluginOptions } from '../plugins';
 
+
+export interface IConfig {
+  [key: string]: unknown;
+  database: IDatabaseConfiguration;
+  server: IServerConfiguration;
+}
+
 export interface IRedisCacheConfig {
   engine: 'redis';
   host: string;
