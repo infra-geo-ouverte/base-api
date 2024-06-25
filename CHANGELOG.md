@@ -1,3 +1,12 @@
+## [2.2.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.2...2.2.3) (2024-06-25)
+
+
+### Bug Fixes
+
+* Nodejs engine downgrade minimal requirement to v16 ([52a3916](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/52a391626f8c268a26d7b4a28ec68b7ed141a2c2))
+
+
+
 ## [2.2.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...2.2.2) (2024-06-25)
 
 
