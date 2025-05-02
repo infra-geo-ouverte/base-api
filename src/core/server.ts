@@ -105,9 +105,9 @@ export class Server {
     return serverHapi;
   }
 
-  static async start(afterInit?: () => Promise<void>) {
+  static async start(afterInit?: (server: Hapi.Server) => Promise<void>) {
     const server = await Server.init(Config.getServerConfig());
-    await afterInit?.();
+    await afterInit?.(server);
     await server.start();
     server.logger.info(`Running environment ${process.env.NODE_ENV || 'dev'}`);
     server.logger.info(`Server running at: ${server.info.uri}`);
