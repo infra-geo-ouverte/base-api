@@ -1,3 +1,12 @@
+# [3.0.0-next.6](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.5...3.0.0-next.6) (2025-05-02)
+
+
+### Features
+
+* **server:** update start method to accept server instance in afterInit callback ([5a2c8cb](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/5a2c8cbcfb167329128f64af944d021d1a0084eb))
+
+
+
 # [3.0.0-next.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.3...3.0.0-next.5) (2025-05-02)
 
 
