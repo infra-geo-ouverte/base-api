@@ -1,51 +1,19 @@
-# [3.0.0-next.4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.3...3.0.0-next.4) (2024-06-18)
+# [3.0.0-next.5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.3...3.0.0-next.5) (2025-05-02)
 
 
 ### Bug Fixes
 
-* **utils:** infer the return type from the property ([bd9f1a8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/bd9f1a81f5ffa1886a36a1714f1bc62de89ab846))
-
-
-
-# [3.0.0-next.3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.2...3.0.0-next.3) (2024-04-09)
-
-
-### Bug Fixes
-
-* **database:** use the server log ([8d83909](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/8d839093c8b20339e14873abaeb5b36aa180a3cf))
-
-
-
-# [3.0.0-next.2](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.1...3.0.0-next.2) (2024-03-06)
-
-
-### Bug Fixes
-
-* missing dependencies deleted by error ([354e4bb](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/354e4bbdce05b84485167688cacdcfafeca91925))
-
-
-
-# [3.0.0-next.1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.0...3.0.0-next.1) (2024-02-29)
+* async regression remove require and use import ([10ab7b1](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/10ab7b1f98e70d2b4000e884e82c1de747bdbdc8))
+* **database:** use the server log ([8a652b3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/8a652b3ef0c2d13f45e0054dd598f119a7d58937))
+* **dependencies:** correct vulnerabilities and remove unmaintened deps ([382af82](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/382af8279585bfd9ba52a7e87fd2eb58e127988b))
+* missing dependencies deleted by error ([c8ac3d4](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/c8ac3d41f2b5a54e932cbad5155152c1ee1f1c6f))
 
 
 ### Features
 
-* sanitizer handle regex ([97120d5](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/97120d56e80c105ffd032a9a962d908d522a5d9a))
-
-
-
-# [3.0.0-next.0](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/2.2.1...3.0.0-next.0) (2024-02-27)
-
-
-### Bug Fixes
-
-* async regression remove require and use import ([e2f7f18](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/e2f7f1844d68225dfaf53c4d18009acf91ceea23))
-* **dependencies:** correct vulnerabilities and remove unmaintened deps ([142c7f9](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/142c7f9c8128091347d1c5bb3121c1d02ecbabf3))
-
-
-### Features
-
-* **logger:** ajuster log info ([2545330](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/2545330942a354b8dcb0c1121c04daa58cbd8077))
+* **logger:** ajuster log info ([cdb3b5a](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/cdb3b5a0e80dca9cd2b12d8cba17c88a7858f06a))
+* sanitizer handle regex ([9f0d6c3](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/9f0d6c357c90e81217c2ba9e1d257e35783d4fcf))
+* **server:** add after init callback ([03a5148](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/03a514870c2e456cf28f492cdb57076c73273c2d))
 
 
 
