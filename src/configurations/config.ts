@@ -6,8 +6,7 @@ import {
   IDatabaseProxyConfiguration,
   IServerConfiguration,
   IMailConfiguration,
-  IConfigOptions,
-  IConfig
+  IConfigOptions
 } from './config.interface';
 
 let configs: nconf.Provider;
@@ -26,7 +25,7 @@ export class Config {
     }
   };
 
-  static readConfig(basePath: string, relPath: string, opts: IConfigOptions = {}): IConfig {
+  static readConfig(basePath: string, relPath: string, opts: IConfigOptions = {}): nconf.Provider {
     path = basePath;
     opts = ObjectUtils.mergeDeep(this.defaultsOptions, opts);
 
@@ -55,7 +54,7 @@ export class Config {
       .overrides(opts.overrides)
       .defaults(opts.defaults);
 
-    return configs as never as IConfig;
+    return configs;
   }
 
   static getConfig(key?: string) {
