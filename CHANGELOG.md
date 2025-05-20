@@ -1,3 +1,12 @@
+# [3.0.0-next.7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.6...3.0.0-next.7) (2025-05-20)
+
+
+### Features
+
+* enhance config with defaults and overrides properties ([419b344](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/419b344ac2308ef972635d96e284eb42bddad073))
+
+
+
 # [3.0.0-next.6](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.5...3.0.0-next.6) (2025-05-02)
 
 
