@@ -1,3 +1,12 @@
+# [3.0.0-next.8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.7...3.0.0-next.8) (2025-05-20)
+
+
+### Bug Fixes
+
+* **config:** update readConfig return type to nconf.Provider ([e8957b7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/commit/e8957b7892eff2c3e8f1f310ed3a152b3fceca62))
+
+
+
 # [3.0.0-next.7](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.6...3.0.0-next.7) (2025-05-20)
 
 
