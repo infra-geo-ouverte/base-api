@@ -51,9 +51,11 @@ export class Config {
       })
       .file({
         file: basePath + '/' + relPath
-      });
+      })
+      .overrides(opts.overrides)
+      .defaults(opts.defaults);
 
-    return configs;
+    return configs as never as IConfig;
   }
 
   static getConfig(key?: string) {

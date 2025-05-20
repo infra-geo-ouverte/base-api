@@ -1,6 +1,5 @@
 import { IPluginOptions } from '../plugins';
 
-
 export interface IConfig {
   [key: string]: unknown;
   database: IDatabaseConfiguration;
@@ -15,15 +14,19 @@ export interface IRedisCacheConfig {
   db?: string;
   tls?: boolean;
   timeout?: number;
-  replicats?: [{
-    host: string;
-    port?: number;
-    enabled?: boolean;
-  }];
-  sentinels?: [{
-    host: string;
-    port: number;
-  }];
+  replicats?: [
+    {
+      host: string;
+      port?: number;
+      enabled?: boolean;
+    }
+  ];
+  sentinels?: [
+    {
+      host: string;
+      port: number;
+    }
+  ];
   sentinelName?: string;
 }
 
@@ -41,12 +44,12 @@ export interface IServerConfiguration {
 export interface IRouteOptions {
   clientCache?: {
     expiresIn?: number;
-  }
+  };
   security?: {
     hsts?: boolean;
     xframe?: boolean | 'deny' | 'sameorigin';
     xss?: false | 'enabled' | 'disabled';
-  }
+  };
 }
 export interface IDatabaseConfiguration {
   dialect?: 'sqlite' | 'postgres';
@@ -75,7 +78,7 @@ export interface IPostgresConfiguration extends IDatabaseConfiguration {
     min?: number;
     acquire?: number;
     idle?: number;
-  }
+  };
 }
 
 export interface IDatabaseProxyConfiguration {
@@ -101,11 +104,13 @@ export interface IMailConfiguration {
 export interface IConfigOptions {
   argv?: {
     parseValues?: boolean;
-  },
+  };
   env?: {
     separator?: string;
     prefixKey?: string;
     removePrefixKey?: boolean;
     parseValues?: boolean;
-  }
+  };
+  defaults?: Record<string, unknown>;
+  overrides?: Record<string, unknown>;
 }
