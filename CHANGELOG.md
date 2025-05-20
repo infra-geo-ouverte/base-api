@@ -1,3 +1,7 @@
+# [3.0.0-next.9](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.8...3.0.0-next.9) (2025-05-20)
+
+
+
 # [3.0.0-next.8](https://gitlab.forge.gouv.qc.ca/igo2/base-api/compare/3.0.0-next.7...3.0.0-next.8) (2025-05-20)
 
 
