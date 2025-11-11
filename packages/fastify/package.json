@@ -1,0 +1,41 @@
+{
+  "name": "@igo2/fastify",
+  "version": "0.0.1",
+  "description": "Base Api for Fastify",
+  "homepage": "https://gitlab.forge.gouv.qc.ca/igo2/base-api/packages/fastapi#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.forge.gouv.qc.ca/igo2/base-api.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.forge.gouv.qc.ca/igo2/base-api/issues"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc -p tsconfig.lib.json",
+    "postbuild": "node --import tsx ../../scripts/src/postbuild.mts fastify",
+    "types-check": "tsc --noEmit",
+    "lint": "eslint ./src --ext .ts",
+    "lint.fix": "eslint --fix ./src --ext .ts"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/public-api.ts"
+    }
+  },
+  "dependencies": {
+    "@fastify/env": "^5.0.0",
+    "@fastify/swagger": "^9.0.0",
+    "@fastify/swagger-ui": "^5.0.0",
+    "@fastify/type-provider-typebox": "^6.0.0",
+    "@sentry/profiling-node": "^10.0.0",
+    "dotenv": "^17.0.0",
+    "fastify-plugin": "^5.0.0",
+    "pino": "^10.0.0"
+  },
+  "peerDependencies": {
+    "@sentry/node": "^10.0.0",
+    "fastify": "^5.0.0",
+    "typebox": "^1.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../dist/hapi",
+    "declaration": true,
+    "declarationMap": false,
+    "inlineSources": true,
+    "paths": {
+      "@igo2/*": ["./../../dist/*"]
+    }
+  },
+  "files": ["./src/public-api.ts"],
+  "include": ["./**/*.d.ts"]
+}

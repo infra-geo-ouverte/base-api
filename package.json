@@ -1,63 +1,55 @@
 {
   "name": "@igo2/base-api",
-  "version": "3.0.0-next.9",
+  "version": "3.0.0-next.10",
   "description": "Base Api",
   "workspaces": [
-    "scripts"
+    "scripts",
+    "packages/*"
   ],
+  "homepage": "https://gitlab.forge.gouv.qc.ca/igo2/base-api#readme",
   "repository": {
-    "private": true
+    "type": "git",
+    "url": "git+https://gitlab.forge.gouv.qc.ca/igo2/base-api.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.forge.gouv.qc.ca/igo2/base-api/issues"
   },
   "license": "UNLICENSED",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   },
   "main": "src/index.ts",
+  "packageManager": "npm@11.6.1",
   "scripts": {
-    "tsc": "tsc",
-    "build": "node scripts/src/build.js",
-    "lint": "eslint ./src --ext .ts",
-    "test": "npm run lint",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "preversion": "npm run test",
-    "version": "npm run build && npm run changelog && git add -A CHANGELOG.md",
-    "postversion": "git push --follow-tags && npm publish ./build"
-  },
-  "dependencies": {
-    "@aws-sdk/client-ses": "^3.509.0",
-    "@hapi/boom": "^10.0.1",
-    "@hapi/catbox-redis": "^7.0.2",
-    "@hapi/hapi": "^21.3.2",
-    "@hapi/inert": "^7.1.0",
-    "@hapi/vision": "^7.0.3",
-    "blipp": "^4.0.2",
-    "camelcase": "^6.3.0",
-    "elastic-apm-node": "^4.0.0",
-    "handlebars": "^4.7.8",
-    "hapi-dev-errors": "^4.0.0",
-    "hapi-pino": "^12.1.0",
-    "hapi-swagger": "^17.1.0",
-    "ioredis": "^5.3.2",
-    "joi": "^17.11.0",
-    "md5": "^2.3.0",
-    "nconf": "^0.13.0",
-    "nodemailer": "^6.9.9",
-    "pg": "^8.11.3",
-    "pino-pretty": "^10.3.1",
-    "sequelize": "^6.33.0",
-    "sequelize-typescript": "^2.1.6",
-    "xss": "^1.0.14"
+    "postinstall": "git --version > /dev/null 2>&1 && git config core.hooksPath .git-hooks || echo 'Ignore postinstall'",
+    "build": "turbo build",
+    "types-check": "turbo types-check",
+    "format": "prettier packages scripts --check --config .prettierrc",
+    "format.fix": "prettier --write packages scripts --check --config .prettierrc",
+    "lint": "npm run lint --workspace=packages --if-present",
+    "lint.fix": "npm run lint.fix --workspace=packages --if-present"
   },
   "devDependencies": {
-    "@types/geojson": "^7946.0.11",
-    "@types/nconf": "^0.10.7",
+    "@commitlint/cli": "^20.0.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/format": "^20.0.0",
+    "@commitlint/types": "^20.0.0",
+    "@eslint/js": "^9.39.0",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/gitlab": "^13.2.0",
+    "@semantic-release/npm": "^13.0.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
+    "@tsconfig/node24": "^24.0.0",
     "@types/node": "^20.8.4",
-    "@types/validator": "^13.11.2",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "conventional-changelog-cli": "^4.1.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-unused-imports": "^3.0.0",
-    "typescript": "^5.3.3"
+    "@typescript-eslint/eslint-plugin": "^8.46.0",
+    "@typescript-eslint/parser": "^8.46.0",
+    "eslint": "^9.39.0",
+    "prettier": "^3.6.2",
+    "semantic-release": "^25.0.0",
+    "tsx": "^4.20.6",
+    "turbo": "^2.6.1",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.46.0"
   }
 }

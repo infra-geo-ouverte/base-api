@@ -1,15 +1,27 @@
 {
+  "extends": "@tsconfig/node24/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./build",
-    "target": "ESNext",
-    "module": "commonjs",
-    "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "noUnusedLocals": true,
-    "lib": ["ESNext", "dom"]
-  }
+
+    "preserveConstEnums": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "paths": {
+      "@igo2/base-api": [
+        "./packages/base-api/src/public-api"
+      ],
+      "@igo2/hapi": [
+        "./packages/hapi/src/public-api"
+      ],
+      "@igo2/fastify": [
+        "./packages/fastify/src/public-api"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+  ]
 }
