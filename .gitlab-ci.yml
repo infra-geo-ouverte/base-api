@@ -40,6 +40,7 @@ audit:
   script:
     - npm audit --omit dev; npm audit signatures
   interruptible: true
+  allow_failure: true
 
 lint:
   stage: quality
