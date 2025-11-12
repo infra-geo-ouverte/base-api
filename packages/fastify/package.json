@@ -5,7 +5,7 @@
   "homepage": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/packages/fastapi#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api.git"
+    "url": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api.git"
   },
   "bugs": {
     "url": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/issues"
