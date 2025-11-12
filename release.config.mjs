@@ -18,8 +18,8 @@ export default {
       '@semantic-release/exec',
       {
         prepareCmd:
-          'npm run pre-release ${nextRelease.version} && npm run build',
-        publishCmd: 'npm run publish ${nextRelease.version}'
+          'npm run pre-release -w scripts ${nextRelease.version} && npm run build',
+        publishCmd: 'npm run publish -w scripts ${nextRelease.version}'
       }
     ],
     [
