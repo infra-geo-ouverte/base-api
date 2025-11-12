@@ -1,6 +1,6 @@
 {
   "name": "@igo2/fastify",
-  "version": "0.0.1",
+  "version": "1.0.0-next.1",
   "description": "Base Api for Fastify",
   "homepage": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/packages/fastapi#readme",
   "repository": {
@@ -30,8 +30,8 @@
     "@fastify/type-provider-typebox": "^6.0.0",
     "@sentry/profiling-node": "^10.0.0",
     "camelcase": "^6.3.0",
-    "drizzle-orm": "^0.44.2",
     "dotenv": "^17.0.0",
+    "drizzle-orm": "^0.44.2",
     "fastify-plugin": "^5.0.0",
     "pg": "^8.16.0",
     "pino": "^10.0.0",
