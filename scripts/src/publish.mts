@@ -1,4 +1,5 @@
 import { readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { $ } from 'execa';
 
@@ -25,7 +26,7 @@ export const RELEASE_TAGS: PreReleaseTag[] = ['rc', 'next', 'beta', 'alpha'];
 async function publishPackage(name: string, version: string): Promise<void> {
   const tag = RELEASE_TAGS.find((tag) => version.includes(tag));
 
-  let command = `npm publish ./dist/${name}`;
+  let command = `npm publish ${join(PATHS.dist, name)}`;
 
   if (tag) {
     command += ` --tag ${tag}`;
