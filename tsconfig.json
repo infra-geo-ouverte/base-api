@@ -12,9 +12,6 @@
       "@igo2/base-api": [
         "./packages/base-api/src/public-api"
       ],
-      "@igo2/hapi": [
-        "./packages/hapi/src/public-api"
-      ],
       "@igo2/fastify": [
         "./packages/fastify/src/public-api"
       ],

@@ -1,34 +1,78 @@
-import { BaseClientConfig } from '../../database.config';
-import { DatabaseOrm, DatabaseOrmKind } from '../../database.interface';
-import { IgoSequelize } from './sequelize';
+import camelcase from 'camelcase';
+import { Pool } from 'pg';
+import { ModelCtor, Sequelize, SequelizeOptions } from 'sequelize-typescript';
 
-export function withSequelize(
-  config: BaseClientConfig
-): DatabaseOrm<DatabaseOrmKind.Sequelize> {
-  const sequelize = new IgoSequelize('postgres', {
-    database: config.database,
-    user: config.user,
-    password: config.password,
-    host: config.host,
-    port: config.port,
-    schema: config.schema,
-    // searchPath: dbPG.searchPath || 'DEFAULT',
-    dialectOptions: {
-      ssl: config.ssl,
-      statement_timeout: config.statement_timeout
-      // prependSearchPath: dbPG.searchPath ? true : undefined
-    },
-    pool: {
-      max: config?.max ?? 5,
-      min: config?.min ?? 0,
-      idle: config?.idleTimeoutMillis ?? 10000
-    }
-  });
+import { DatabaseOrm, DatabaseOrmKind } from '../orm.interface';
 
+export function withSequelize({
+  models
+}: {
+  models?: SequelizeOptions['models'];
+}): DatabaseOrm<DatabaseOrmKind.Sequelize> {
   return {
     kind: DatabaseOrmKind.Sequelize,
     provider: {
-      useValue: sequelize
+      useFactory: (clientRW: Pool) => {
+        const options = clientRW.options;
+        clientRW.end();
+
+        if (options.password instanceof Function) {
+          throw new Error("Sequelize doesn't support Function password");
+        }
+
+        if (!options.database || !options.user) {
+          throw new Error(
+            'database and user options are required for Sequelize'
+          );
+        }
+
+        const sequelize = new Sequelize(
+          options.database,
+          options.user,
+          options.password,
+          {
+            host: options.host,
+            port: options.port,
+            dialect: 'postgres',
+            dialectOptions: {
+              ssl: options.ssl,
+              statement_timeout: options.statement_timeout
+            },
+            pool: {
+              max: options?.max ?? 5,
+              min: options?.min ?? 0,
+              idle: options?.idleTimeoutMillis ?? 10000
+            }
+          }
+        );
+
+        // Add models
+        if (models) {
+          if (isStringArray(models)) {
+            sequelize.addModels(models, (filename, member) => {
+              const className = camelcase(
+                filename.substring(0, filename.indexOf('.model')),
+                {
+                  pascalCase: true
+                }
+              );
+              return className === member;
+            });
+          } else {
+            sequelize.addModels(models);
+          }
+        }
+
+        return sequelize;
+      }
     }
   };
+}
+
+function isStringArray(arr: string[] | ModelCtor[]): arr is string[] {
+  if (arr.length === 0) {
+    return true;
+  }
+
+  return typeof arr[0] === 'string';
 }

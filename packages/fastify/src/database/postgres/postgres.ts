@@ -10,23 +10,23 @@ import {
   SSLMode
 } from '../database.interface';
 
-type PgClientConfig = ClientConfig | PoolConfig;
-
-type BaseClientConfig = PgClientConfig &
-  Required<Pick<PgClientConfig, 'host' | 'database' | 'user' | 'port'>> & {
-    password: string;
-  };
+export type PgClientConfig =
+  | ClientConfig
+  | (PoolConfig &
+      Required<Pick<ClientConfig, 'host' | 'database' | 'user' | 'port'>> & {
+        password: string;
+      });
 
 export type DatabaseEnv = IConfig & IDatabaseEnv;
 
-export function getAdminConfig(env: DatabaseEnv): BaseClientConfig {
+export function getAdminConfig(env: DatabaseEnv): PgClientConfig {
   const environment = env.ENVIRONMENT;
   return !environment || environment === 'local'
     ? getLocalConfig(env)
     : getClientConfig<'ADMIN'>(env, 'ADMIN');
 }
 
-export const getLocalConfig = (env: DatabaseEnv): BaseClientConfig => {
+export const getLocalConfig = (env: DatabaseEnv): PgClientConfig => {
   return getClientConfig(env);
 };
 
@@ -47,7 +47,7 @@ export function getPoolConfig<P extends ConfigType>(
 function getClientConfig<P extends ConfigType>(
   env: PrefixedConfig<P> | DatabaseEnv,
   type?: ConfigType
-): BaseClientConfig {
+): PgClientConfig {
   const _getEnvValue = <K extends keyof BaseConfig>(key: K): BaseConfig[K] => {
     return getEnvValue(key, env, type);
   };

@@ -39,5 +39,8 @@
     "@sentry/node": "^10.0.0",
     "fastify": "^5.0.0",
     "typebox": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.6"
   }
 }
