@@ -61,7 +61,7 @@ release:
   script:
     - npm config set --location=project "@igo2:registry" https://${GITLAB_NPM_HOST}
     - npm config set --location=project //${GITLAB_NPM_HOST}:_authToken=${GITLAB_TOKEN}
-    - semantic-release
+    - npx semantic-release
   only:
     - next
     - preprod

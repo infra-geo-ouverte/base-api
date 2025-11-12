@@ -1,6 +1,6 @@
-import { PoolConfig } from 'pg';
+import { ClientConfig, PoolConfig } from 'pg';
 
-import { IConfig } from '../config';
+import { IConfig } from '../../config';
 import {
   BaseConfig,
   ConfigType,
@@ -8,12 +8,13 @@ import {
   IDatabaseLocalEnv,
   PrefixedConfig,
   SSLMode
-} from './database.interface';
+} from '../database.interface';
 
-export type BaseClientConfig = PoolConfig &
-  Required<Pick<PoolConfig, 'host' | 'database' | 'user' | 'port'>> & {
+type PgClientConfig = ClientConfig | PoolConfig;
+
+type BaseClientConfig = PgClientConfig &
+  Required<Pick<PgClientConfig, 'host' | 'database' | 'user' | 'port'>> & {
     password: string;
-    schema?: string;
   };
 
 export type DatabaseEnv = IConfig & IDatabaseEnv;
@@ -29,27 +30,21 @@ export const getLocalConfig = (env: DatabaseEnv): BaseClientConfig => {
   return getClientConfig(env);
 };
 
-// export function getPoolConfig<P extends ConfigType>(
-//   env: PrefixedConfig<P> | DatabaseEnv,
-//   type?: ConfigType
-// ): PoolConfig {
-//   const config = getClientConfig(env, type);
+export function getPoolConfig<P extends ConfigType>(
+  env: PrefixedConfig<P> | DatabaseEnv,
+  type?: ConfigType
+): PoolConfig {
+  const config = getClientConfig(env, type);
 
-//   const signer = new Signer({
-//     hostname: config.host,
-//     port: config.port,
-//     username: config.user
-//   });
+  return {
+    ...config,
+    idleTimeoutMillis: 900000, // 15 minutes de idle, le proxy de AWS à un jeu 30 minutes
+    maxLifetimeSeconds: 43200, // 12 heures, le proxy de AWS à un jeu de 24 heures
+    password: config.password
+  };
+}
 
-//   return {
-//     ...config,
-//     idleTimeoutMillis: 900000, // 15 minutes de idle, le proxy de AWS à un jeu 30 minutes
-//     maxLifetimeSeconds: 43200, // 12 heures, le proxy de AWS à un jeu de 24 heures
-//     password: config.password ? config.password : () => signer.getAuthToken()
-//   };
-// }
-
-export function getClientConfig<P extends ConfigType>(
+function getClientConfig<P extends ConfigType>(
   env: PrefixedConfig<P> | DatabaseEnv,
   type?: ConfigType
 ): BaseClientConfig {

@@ -1,5 +1,3 @@
-import { Sequelize } from 'sequelize-typescript';
-
 export enum SSLMode {
   Disable = 'disable',
   Prefer = 'prefer',
@@ -50,14 +48,3 @@ export type IDatabaseEnv = IDatabaseLocalEnv &
   IDatabaseRwEnv &
   IDatabaseRoEnv &
   IDatabaseAdminEnv;
-
-export type ORM = Sequelize;
-
-export interface DatabaseOrm<KindT extends DatabaseOrmKind> {
-  kind: KindT;
-  provider: unknown;
-}
-
-export enum DatabaseOrmKind {
-  Sequelize = 0
-}

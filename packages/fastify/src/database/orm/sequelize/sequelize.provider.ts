@@ -1,5 +1,5 @@
-import { BaseClientConfig } from '../database.config';
-import { DatabaseOrm, DatabaseOrmKind } from '../database.interface';
+import { BaseClientConfig } from '../../database.config';
+import { DatabaseOrm, DatabaseOrmKind } from '../../database.interface';
 import { IgoSequelize } from './sequelize';
 
 export function withSequelize(
@@ -27,6 +27,8 @@ export function withSequelize(
 
   return {
     kind: DatabaseOrmKind.Sequelize,
-    provider: sequelize
+    provider: {
+      useValue: sequelize
+    }
   };
 }
