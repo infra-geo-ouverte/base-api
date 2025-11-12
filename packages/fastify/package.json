@@ -14,7 +14,7 @@
     "dev": "tsc --watch",
     "build": "tsc -p tsconfig.lib.json",
     "postbuild": "node --import tsx ../../scripts/src/postbuild.mts fastify",
-    "types-check": "tsc --noEmit",
+    "types-check": "tsc -p tsconfig.lib.json --noEmit",
     "lint": "eslint ./src --ext .ts",
     "lint.fix": "eslint --fix ./src --ext .ts"
   },
@@ -29,11 +29,14 @@
     "@fastify/swagger-ui": "^5.0.0",
     "@fastify/type-provider-typebox": "^6.0.0",
     "@sentry/profiling-node": "^10.0.0",
+    "camelcase": "^6.3.0",
     "drizzle-orm": "^0.44.2",
     "dotenv": "^17.0.0",
     "fastify-plugin": "^5.0.0",
     "pg": "^8.16.0",
-    "pino": "^10.0.0"
+    "pino": "^10.0.0",
+    "sequelize": "^6.33.0",
+    "sequelize-typescript": "^2.1.6"
   },
   "peerDependencies": {
     "@sentry/node": "^10.0.0",

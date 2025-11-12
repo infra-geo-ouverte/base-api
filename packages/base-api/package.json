@@ -14,7 +14,7 @@
     "dev": "tsc --watch",
     "build": "tsc -p tsconfig.lib.json",
     "postbuild": "node --import tsx ../../scripts/src/postbuild.mts base-api",
-    "types-check": "tsc --noEmit",
+    "types-check": "tsc -p tsconfig.lib.json --noEmit",
     "lint": "eslint ./src --ext .ts",
     "lint.fix": "eslint --fix ./src --ext .ts"
   },

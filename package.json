@@ -21,7 +21,7 @@
   "main": "src/index.ts",
   "packageManager": "npm@11.6.1",
   "scripts": {
-    "postinstall": "git --version > /dev/null 2>&1 && git config core.hooksPath .git-hooks || echo 'Ignore postinstall'",
+    "postinstall": "git --version > /dev/null 2>&1 && git config core.hooksPath .config/git-hooks || echo 'Ignore postinstall'",
     "build": "turbo build",
     "types-check": "turbo types-check",
     "format": "prettier packages scripts --check --config .prettierrc",

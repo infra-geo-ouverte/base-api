@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 
-import { PATHS } from './paths.mjs';
+import { PATHS } from './paths.mts';
 
 export interface IPackageJson {
   name: string;

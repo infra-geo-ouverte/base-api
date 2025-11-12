@@ -2,8 +2,8 @@ import { join } from 'node:path';
 
 import { access, constants, copyFile } from 'fs/promises';
 
-import { formatPackageJson } from './config/package.mjs';
-import { PATHS } from './config/paths.mjs';
+import { formatPackageJson } from './config/package.mts';
+import { PATHS } from './config/paths.mts';
 
 (async () => {
   const [_nodePath, _scriptPath, name] = process.argv;
