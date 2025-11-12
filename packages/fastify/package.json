@@ -2,13 +2,13 @@
   "name": "@igo2/fastify",
   "version": "0.0.1",
   "description": "Base Api for Fastify",
-  "homepage": "https://gitlab.forge.gouv.qc.ca/igo2/base-api/packages/fastapi#readme",
+  "homepage": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/packages/fastapi#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.forge.gouv.qc.ca/igo2/base-api.git"
+    "url": "git+https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api.git"
   },
   "bugs": {
-    "url": "https://gitlab.forge.gouv.qc.ca/igo2/base-api/issues"
+    "url": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/issues"
   },
   "scripts": {
     "dev": "tsc --watch",
