@@ -1,22 +1,9 @@
 
-Debugger listening on ws://127.0.0.1:53060/272aaba0-86f6-42bd-af5a-3043b4655701
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
-
-> @igo2/fastify@1.0.0-next.2 build
+> @igo2/fastify@1.0.0-next.4 build
 > tsc -p tsconfig.lib.json
 
-Debugger listening on ws://127.0.0.1:53813/afcf4e31-359c-4785-93ad-90d696bf1112
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
-Waiting for the debugger to disconnect...
-⠙[1G[0K
-> @igo2/fastify@1.0.0-next.2 postbuild
+
+> @igo2/fastify@1.0.0-next.4 postbuild
 > node --import tsx ../../scripts/src/postbuild.mts fastify
 
-⠙[1G[0KDebugger listening on ws://127.0.0.1:53483/580fe685-2845-4afe-8d55-a542a077b75b
-For help, see: https://nodejs.org/en/docs/inspector
-Debugger attached.
 Successfully copied README.md for fastify
-Waiting for the debugger to disconnect...
-⠙[1G[0KWaiting for the debugger to disconnect...
