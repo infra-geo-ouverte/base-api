@@ -14,6 +14,7 @@ export interface BaseConfig {
 
 interface IDatabaseBaseEnv {
   DB_NAME: string;
+  DB_SCHEMA?: string;
 }
 
 /**
