@@ -21,5 +21,4 @@ node_modules
 # npm pack
 *.tgz
 
-# Ignore any .turbo directory at any depth
 .turbo

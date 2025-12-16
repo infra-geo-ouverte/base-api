@@ -9,7 +9,8 @@ const SSLEnum = Type.Enum(SSLMode, {
 });
 
 const BASE_ENV_SCHEMA = Type.Object({
-  DB_NAME: Type.String({ default: 'postgres' })
+  DB_NAME: Type.String({ default: 'postgres' }),
+  DB_SCHEMA: Type.Optional(Type.String())
 });
 
 const DATABASE_LOCAL_ENV_SCHEMA = Type.Object({
