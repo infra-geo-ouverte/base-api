@@ -13,12 +13,8 @@ export function withSequelize({
     kind: DatabaseOrmKind.Sequelize,
     provider: {
       useFactory: (clientRW: Pool) => {
-        const options = clientRW.options;
+        const options = { ...clientRW.options };
         clientRW.end();
-
-        if (options.password instanceof Function) {
-          throw new Error("Sequelize doesn't support Function password");
-        }
 
         if (!options.database || !options.user) {
           throw new Error(
@@ -26,10 +22,17 @@ export function withSequelize({
           );
         }
 
+        const password = options.password;
+        if (password instanceof Function) {
+          Sequelize.beforeConnect(async (config) => {
+            config.password = await password();
+          });
+        }
+
         const sequelize = new Sequelize(
           options.database,
           options.user,
-          options.password,
+          password instanceof Function ? undefined : password,
           {
             host: options.host,
             port: options.port,

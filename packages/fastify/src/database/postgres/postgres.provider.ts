@@ -3,16 +3,13 @@ import fastifyPlugin from 'fastify-plugin';
 import { FastifyInstance } from 'fastify/types/instance';
 import { Pool } from 'pg';
 
-import { IConfig } from '../../config/config.interface';
 import { isFactory } from '../../provider';
-import { IDatabaseEnv } from '../database.interface';
-import { DatabaseOrm, DatabaseOrmKind } from '../orm/orm.interface';
-import { getLocalConfig, getPoolConfig } from './postgres';
+import { DatabaseOrm, DatabaseOrmKind } from '../orm';
+import { DatabaseConfig, getLocalConfig, getPoolConfig } from './postgres';
 
-type Options = IDatabaseEnv &
-  IConfig & {
-    orm: DatabaseOrm<DatabaseOrmKind>;
-  };
+export type Options = DatabaseConfig & {
+  orm: DatabaseOrm<DatabaseOrmKind>;
+};
 
 export const postgresDatabasePlugin: FastifyPluginAsync<Options> =
   fastifyPlugin(
@@ -28,7 +25,6 @@ export const postgresDatabasePlugin: FastifyPluginAsync<Options> =
         throw error;
       }
 
-      // the readOnly is base on replicas usage => should the database plugin should know about it?
       const ormProvider = options.orm.provider;
       const orm = isFactory(ormProvider)
         ? ormProvider.useFactory(rwClient, getReadOnlyPool(options))
@@ -39,18 +35,18 @@ export const postgresDatabasePlugin: FastifyPluginAsync<Options> =
     }
   );
 
-function getReadWritePool(env: Options) {
+function getReadWritePool(options: Options) {
   const config =
-    env.ENVIRONMENT === 'local'
-      ? getLocalConfig(env)
-      : getPoolConfig(env, 'RW');
+    options.ENVIRONMENT === 'local'
+      ? getLocalConfig(options)
+      : getPoolConfig(options, 'RW');
   if (!config) {
     throw new Error('Database config not found');
   }
   return new Pool(config);
 }
 
-function getReadOnlyPool(env: Options) {
-  const readOnlyConfig = getPoolConfig(env, 'RO');
+function getReadOnlyPool(options: Options) {
+  const readOnlyConfig = getPoolConfig(options, 'RO');
   return new Pool(readOnlyConfig);
 }

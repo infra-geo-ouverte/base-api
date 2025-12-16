@@ -28,7 +28,6 @@
     "@fastify/swagger": "^9.0.0",
     "@fastify/swagger-ui": "^5.0.0",
     "@fastify/type-provider-typebox": "^6.0.0",
-    "@sentry/profiling-node": "^10.0.0",
     "camelcase": "^6.3.0",
     "dotenv": "^17.0.0",
     "drizzle-orm": "^0.44.2",
