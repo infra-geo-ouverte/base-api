@@ -1,5 +1,6 @@
 import { Type } from 'typebox';
 
+import { Environments } from '../config';
 import { SSLMode } from './database.interface';
 
 const SSLEnum = Type.Enum(SSLMode, {
@@ -43,19 +44,20 @@ const ADMIN_DATABASE_ENV_SCHEMA = Type.Object({
   DB_ADMIN_SSL: Type.Optional(SSLEnum)
 });
 
-export const DATABASE_ENV_SCHEMA = Type.Evaluate(
-  Type.Intersect(
-    [
-      BASE_ENV_SCHEMA,
-      !process.env.ENVIRONMENT || process.env.ENVIRONMENT === 'local'
-        ? DATABASE_LOCAL_ENV_SCHEMA
-        : Type.Evaluate(
-            Type.Intersect([
-              DATABASE_RW_ENV_SCHEMA,
-              DATABASE_RO_ENV_SCHEMA,
-              ADMIN_DATABASE_ENV_SCHEMA
-            ])
-          )
-    ].filter(Boolean)
-  )
-);
+export const getDatabaseEnvSchema = (environment: Environments) =>
+  Type.Evaluate(
+    Type.Intersect(
+      [
+        BASE_ENV_SCHEMA,
+        environment === 'local'
+          ? DATABASE_LOCAL_ENV_SCHEMA
+          : Type.Evaluate(
+              Type.Intersect([
+                DATABASE_RW_ENV_SCHEMA,
+                DATABASE_RO_ENV_SCHEMA,
+                ADMIN_DATABASE_ENV_SCHEMA
+              ])
+            )
+      ].filter(Boolean)
+    )
+  );

@@ -1,9 +1,22 @@
 
-> @igo2/base-api@1.0.0-next.3 build
+Debugger listening on ws://127.0.0.1:53347/dfadab12-daf3-40dc-9f0f-68e2e62a5dc6
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+
+> @igo2/base-api@1.0.0-next.2 build
 > tsc -p tsconfig.lib.json
 
-
-> @igo2/base-api@1.0.0-next.3 postbuild
+Debugger listening on ws://127.0.0.1:53814/04386f3c-ac3e-4ee0-b0b5-c43bb0a101b1
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
+Waiting for the debugger to disconnect...
+⠙[1G[0K
+> @igo2/base-api@1.0.0-next.2 postbuild
 > node --import tsx ../../scripts/src/postbuild.mts base-api
 
+⠙[1G[0KDebugger listening on ws://127.0.0.1:53144/b9b726ce-2d10-4163-9f02-90e5ca76e9f7
+For help, see: https://nodejs.org/en/docs/inspector
+Debugger attached.
 Successfully copied README.md for base-api
+Waiting for the debugger to disconnect...
+⠙[1G[0KWaiting for the debugger to disconnect...

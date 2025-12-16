@@ -10,17 +10,17 @@ import {
   SSLMode
 } from '../database.interface';
 
-export type PgClientConfig =
-  | ClientConfig
-  | (PoolConfig &
-      Required<Pick<ClientConfig, 'host' | 'database' | 'user' | 'port'>> & {
-        password: string;
-      });
+export type PgClientConfig = ClientConfig | PgPoolConfig;
+
+export type PgPoolConfig = PoolConfig &
+  Required<
+    Pick<ClientConfig, 'host' | 'database' | 'user' | 'port' | 'password'>
+  >;
 
 export type DatabaseConfig = IConfig &
   IDatabaseEnv & {
     /** A password signer by example to be compatible with the AWS RDS @aws-sdk/rds-signer */
-    signer?: () => Promise<string>;
+    signer?(config: PgPoolConfig): () => string | Promise<string>;
   };
 
 export function getAdminConfig(env: DatabaseConfig): PgClientConfig {
@@ -37,17 +37,17 @@ export const getLocalConfig = (env: DatabaseConfig): PgClientConfig => {
 export function getPoolConfig(
   options: DatabaseConfig,
   type?: ConfigType
-): PoolConfig {
+): PgPoolConfig {
   const config = getClientConfig(options, type);
 
-  const baseConfig = {
+  const baseConfig: PgPoolConfig = {
     ...config,
     idleTimeoutMillis: 900000, // 15 minutes de idle, le proxy de AWS à un jeu 30 minutes
     maxLifetimeSeconds: 43200 // 12 heures, le proxy de AWS à un jeu de 24 heures
-  };
+  } as PgPoolConfig;
 
   if (options.signer) {
-    baseConfig.password = () => options.signer!();
+    baseConfig.password = options.signer!(baseConfig);
   }
 
   return baseConfig;

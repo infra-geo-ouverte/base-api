@@ -5,15 +5,14 @@ import { ModelCtor, Sequelize, SequelizeOptions } from 'sequelize-typescript';
 import { DatabaseOrm, DatabaseOrmKind } from '../orm.interface';
 
 export function withSequelize({
-  models
-}: {
-  models?: SequelizeOptions['models'];
-}): DatabaseOrm<DatabaseOrmKind.Sequelize> {
+  models,
+  ...config
+}: Partial<SequelizeOptions>): DatabaseOrm<DatabaseOrmKind.Sequelize> {
   return {
     kind: DatabaseOrmKind.Sequelize,
     provider: {
       useFactory: (clientRW: Pool) => {
-        const options = { ...clientRW.options };
+        const options = clientRW.options;
         clientRW.end();
 
         if (!options.database || !options.user) {
@@ -23,11 +22,6 @@ export function withSequelize({
         }
 
         const password = options.password;
-        if (password instanceof Function) {
-          Sequelize.beforeConnect(async (config) => {
-            config.password = await password();
-          });
-        }
 
         const sequelize = new Sequelize(
           options.database,
@@ -45,9 +39,18 @@ export function withSequelize({
               max: options?.max ?? 5,
               min: options?.min ?? 0,
               idle: options?.idleTimeoutMillis ?? 10000
-            }
+            },
+            ...(config ?? {})
           }
         );
+
+        if (password instanceof Function) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (sequelize as any).beforeConnect(async (config: any) => {
+            const passwordString = await password();
+            config.password = passwordString;
+          });
+        }
 
         // Add models
         if (models) {
