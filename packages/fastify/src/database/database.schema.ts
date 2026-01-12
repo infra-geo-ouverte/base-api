@@ -13,7 +13,7 @@ const BASE_ENV_SCHEMA = Type.Object({
   DB_SCHEMA: Type.Optional(Type.String())
 });
 
-const DATABASE_LOCAL_ENV_SCHEMA = Type.Object({
+export const DATABASE_LOCAL_ENV_SCHEMA = Type.Object({
   DB_USER: Type.String({ default: 'postgres' }),
   DB_PASSWORD: Type.Optional(Type.String({ default: 'postgres' })),
   DB_HOST: Type.String({ default: 'database' }),
@@ -21,7 +21,7 @@ const DATABASE_LOCAL_ENV_SCHEMA = Type.Object({
   DB_SSL: Type.Optional(SSLEnum)
 });
 
-const DATABASE_RW_ENV_SCHEMA = Type.Object({
+export const DATABASE_RW_ENV_SCHEMA = Type.Object({
   DB_RW_USER: Type.String(),
   DB_RW_PASSWORD: Type.Optional(Type.String()),
   DB_RW_HOST: Type.String(),
@@ -29,7 +29,7 @@ const DATABASE_RW_ENV_SCHEMA = Type.Object({
   DB_RW_SSL: Type.Optional(SSLEnum)
 });
 
-const DATABASE_RO_ENV_SCHEMA = Type.Object({
+export const DATABASE_RO_ENV_SCHEMA = Type.Object({
   DB_RO_USER: Type.String(),
   DB_RO_PASSWORD: Type.Optional(Type.String()),
   DB_RO_HOST: Type.String(),
@@ -37,7 +37,7 @@ const DATABASE_RO_ENV_SCHEMA = Type.Object({
   DB_RO_SSL: Type.Optional(SSLEnum)
 });
 
-const ADMIN_DATABASE_ENV_SCHEMA = Type.Object({
+export const ADMIN_DATABASE_ENV_SCHEMA = Type.Object({
   DB_ADMIN_USER: Type.String(),
   DB_ADMIN_PASSWORD: Type.Optional(Type.String()),
   DB_ADMIN_HOST: Type.String(),
@@ -45,6 +45,13 @@ const ADMIN_DATABASE_ENV_SCHEMA = Type.Object({
   DB_ADMIN_SSL: Type.Optional(SSLEnum)
 });
 
+/**
+ * Include the complete database schema
+ * - For local development
+ * - Read/Write
+ * - Read/Only
+ * - Admin access
+ */
 export const getDatabaseEnvSchema = (environment: Environments) =>
   Type.Evaluate(
     Type.Intersect(
