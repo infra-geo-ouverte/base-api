@@ -8,7 +8,7 @@ const SSLEnum = Type.Enum(SSLMode, {
   description: 'SSL mode: disable | prefer | require'
 });
 
-const BASE_ENV_SCHEMA = Type.Object({
+export const BASE_ENV_SCHEMA = Type.Object({
   DB_NAME: Type.String({ default: 'postgres' }),
   DB_SCHEMA: Type.Optional(Type.String())
 });
