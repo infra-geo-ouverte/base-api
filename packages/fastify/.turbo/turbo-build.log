@@ -1,0 +1,9 @@
+
+> @igo2/fastify@1.0.0-next.9 build
+> tsc -p tsconfig.lib.json
+
+
+> @igo2/fastify@1.0.0-next.9 postbuild
+> node --import tsx ../../scripts/src/postbuild.mts fastify
+
+Successfully copied README.md for fastify
