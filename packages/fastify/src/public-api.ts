@@ -1,3 +1,4 @@
+export * from './authentification';
 export * from './config';
 export * from './database';
 export * from './swagger';
