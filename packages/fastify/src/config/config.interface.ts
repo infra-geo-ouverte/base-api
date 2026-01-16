@@ -18,6 +18,6 @@ export interface IConfigBase {
 export const CONFIG_SCHEMA = Type.Object({
   ENVIRONMENT: UnionLiteral(Environments),
   RELEASE: Type.String({ default: 'local' }), // SEMVER except for the local environment
-  DOMAIN_CLIENT: Type.String(),
+  DOMAIN_CLIENT: Type.Optional(Type.String()),
   PORT: Type.Number({ default: 5000 }) // The same port as the forwarded port in the devcontainer.json
 });
