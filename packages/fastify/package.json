@@ -30,7 +30,7 @@
     "@fastify/type-provider-typebox": "^6.0.0",
     "camelcase": "^6.3.0",
     "dotenv": "^17.0.0",
-    "drizzle-orm": "^0.44.2",
+    "drizzle-orm": "1.0.0-beta.15-859cf75",
     "fastify-plugin": "^5.0.0",
     "pg": "^8.16.0",
     "pino": "^10.0.0",

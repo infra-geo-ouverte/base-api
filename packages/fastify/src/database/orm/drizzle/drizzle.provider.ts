@@ -23,12 +23,22 @@ export function withDrizzlePg<
     kind: DatabaseOrmKind.Drizzle,
     provider: {
       useFactory: (client: Pool, readOnlyClient?: Pool) => {
-        const readWriteClient = drizzle<TSchema>(client, config);
+        const readWriteClient = drizzle<TSchema>({
+          client,
+          ...config
+        });
         if (!withReplicas || environment === 'local') {
           return readWriteClient;
         }
 
-        const readOnlyPool = drizzle(readOnlyClient!, config);
+        if (!readOnlyClient) {
+          throw Error("Le 'readOnlyClient' doit être défini");
+        }
+
+        const readOnlyPool = drizzle({
+          client: readOnlyClient,
+          ...config
+        });
         return withDrizzleReplicas(readWriteClient, [readOnlyPool]);
       }
     }
