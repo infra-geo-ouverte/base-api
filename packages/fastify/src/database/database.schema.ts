@@ -8,7 +8,7 @@ const SSLEnum = Type.Enum(SSLMode, {
   description: 'SSL mode: disable | prefer | require'
 });
 
-export const BASE_ENV_SCHEMA = Type.Object({
+export const DATABASE_BASE_ENV_SCHEMA = Type.Object({
   DB_NAME: Type.String({ default: 'postgres' }),
   DB_SCHEMA: Type.String({
     default: 'public'
@@ -58,7 +58,7 @@ export const getDatabaseEnvSchema = (environment: Environments) =>
   Type.Evaluate(
     Type.Intersect(
       [
-        BASE_ENV_SCHEMA,
+        DATABASE_BASE_ENV_SCHEMA,
         environment === 'local'
           ? DATABASE_LOCAL_ENV_SCHEMA
           : Type.Evaluate(
