@@ -10,7 +10,9 @@ const SSLEnum = Type.Enum(SSLMode, {
 
 export const BASE_ENV_SCHEMA = Type.Object({
   DB_NAME: Type.String({ default: 'postgres' }),
-  DB_SCHEMA: Type.Optional(Type.String())
+  DB_SCHEMA: Type.String({
+    default: 'public'
+  })
 });
 
 export const DATABASE_LOCAL_ENV_SCHEMA = Type.Object({
@@ -37,7 +39,7 @@ export const DATABASE_RO_ENV_SCHEMA = Type.Object({
   DB_RO_SSL: Type.Optional(SSLEnum)
 });
 
-export const ADMIN_DATABASE_ENV_SCHEMA = Type.Object({
+export const DATABASE_ADMIN_ENV_SCHEMA = Type.Object({
   DB_ADMIN_USER: Type.String(),
   DB_ADMIN_PASSWORD: Type.Optional(Type.String()),
   DB_ADMIN_HOST: Type.String(),
@@ -63,7 +65,7 @@ export const getDatabaseEnvSchema = (environment: Environments) =>
               Type.Intersect([
                 DATABASE_RW_ENV_SCHEMA,
                 DATABASE_RO_ENV_SCHEMA,
-                ADMIN_DATABASE_ENV_SCHEMA
+                DATABASE_ADMIN_ENV_SCHEMA
               ])
             )
       ].filter(Boolean)

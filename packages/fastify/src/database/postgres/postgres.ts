@@ -23,6 +23,10 @@ export type DatabaseConfig = IConfig &
     signer?(config: PgPoolConfig): () => string | Promise<string>;
   };
 
+/**
+ * Récupère la configuration ADMIN de la BD. Les variables avec le prefix "DB_ADMIN_XXX".
+ * Excepté en local ou on réutilise les valeurs par défaut de la bd "DB_XXX"
+ */
 export function getAdminConfig(env: DatabaseConfig): PgClientConfig {
   const environment = env.ENVIRONMENT;
   return !environment || environment === 'local'
