@@ -6,7 +6,7 @@ export default {
   plugins: [
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
-    '@semantic-release/gitlab',
+    '@semantic-release/github',
     // NPM is only use to update the package.json, we publish via a script publish.mts
     [
       '@semantic-release/npm',

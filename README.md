@@ -1,7 +1,5 @@
 # IGO - Base API
 
-[GitLab](https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api) • [Issues](https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/issues)
-
 Ce projet contient les librairies de base et les intégrations de framework pour les projets API IGO. Il fournit un ensemble d'utilitaires et de patrons réutilisables pour la construction d'APIs robustes.
 
 ## Contenu
@@ -57,7 +55,7 @@ Le projet est organisé en packages :
 
 ## 🚀 Commits & Releases
 
-Le projet utilise **Semantic Release** pour automatiser la gestion des versions et les publications sur GitLab. Pour que cela fonctionne, nous suivons la convention **Conventional Commits**.
+Le projet utilise **Semantic Release** pour automatiser la gestion des versions et les publications sur Github. Pour que cela fonctionne, nous suivons la convention **Conventional Commits**.
 
 ### 📜 Convention de Commit
 
@@ -82,7 +80,7 @@ Chaque message de commit doit respecter le format suivant :
 
 1. Créer une branche pour votre fonctionnalité ou correction.
 2. Effectuer les changements et s'assurer que le build et les tests passent.
-3. Créer une Merge Request sur GitLab avec une description claire.
+3. Créer une Pull Request sur Github avec une description claire.
 
 ## 🧰 Dépannage
 

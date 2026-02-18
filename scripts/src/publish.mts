@@ -26,7 +26,7 @@ export const RELEASE_TAGS: PreReleaseTag[] = ['rc', 'next', 'beta', 'alpha'];
 async function publishPackage(name: string, version: string): Promise<void> {
   const tag = RELEASE_TAGS.find((tag) => version.includes(tag));
 
-  let command = `npm publish ${join(PATHS.dist, name)}`;
+  let command = `npm publish ${join(PATHS.dist, name)} --access public`;
 
   if (tag) {
     command += ` --tag ${tag}`;

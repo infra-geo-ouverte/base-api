@@ -2,13 +2,13 @@
   "name": "@igo2/base-api",
   "version": "1.0.0-next.13",
   "description": "Base Api",
-  "homepage": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/packages/base-api#readme",
+  "homepage": "https://github.com/infra-geo-ouverte/base-api/packages/base-api#readme",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api.git"
+    "url": "https://github.com/infra-geo-ouverte/base-api.git"
   },
   "bugs": {
-    "url": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/issues"
+    "url": "https://github.com/infra-geo-ouverte/base-api/issues"
   },
   "scripts": {
     "dev": "tsc --watch",
