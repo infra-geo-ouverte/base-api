@@ -8,18 +8,22 @@ on:
 
 permissions:
   id-token: write # Required for OIDC
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: read
   # Allow workflows to publish to GitHub Pages when invoking reusable workflows
   pages: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write # to enable use of OIDC for npm provenance
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
