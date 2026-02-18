@@ -23,7 +23,7 @@
   "scripts": {
     "postinstall": "git --version > /dev/null 2>&1 && git config core.hooksPath .config/git-hooks || echo 'Ignore postinstall'",
     "build": "turbo build",
-    "types-check": "turbo types-check",
+    "types": "turbo types",
     "format": "prettier packages scripts --check --config .prettierrc",
     "format.fix": "prettier --write packages scripts --check --config .prettierrc",
     "lint": "npm run lint --workspace=packages --if-present",

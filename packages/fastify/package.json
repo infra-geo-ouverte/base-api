@@ -14,7 +14,7 @@
     "dev": "tsc --watch",
     "build": "tsc -p tsconfig.lib.json",
     "postbuild": "node --import tsx ../../scripts/src/postbuild.mts fastify",
-    "types-check": "tsc -p tsconfig.lib.json --noEmit",
+    "types": "tsc -p tsconfig.lib.json --noEmit",
     "lint": "eslint ./src --ext .ts",
     "lint.fix": "eslint --fix ./src --ext .ts"
   },

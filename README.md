@@ -1,2 +1,70 @@
-## Installation
-Require: node >=v18.0.0
+# IGO - Base API
+
+[GitLab](https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api) • [Issues](https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/issues)
+
+Ce projet contient les librairies de base et les intégrations de framework pour les projets API IGO. Il fournit un ensemble d'utilitaires et de patrons réutilisables pour la construction d'APIs robustes.
+
+## Contenu
+
+| Section                                 | Description                                 |
+| --------------------------------------- | ------------------------------------------- |
+| [🚧 Requis](#-requis)                   | Dépendances requises                        |
+| [🎓 Setup du projet](#-setup-du-projet) | Comment setuper le projet initialement      |
+| [📜 Commandes](#-commandes-npm)         | Commandes disponibles                       |
+| [🔒 Architecture](#-architecture)       | Architecture du projet (Monorepo)           |
+| [🌎 Contribution](#-contribution)       | Explication du flow de développement        |
+| [🧰 Dépannage](#-dépannage)             | Liste des problèmes possibles avec solution |
+
+## 🚧 Requis
+
+- [Git]
+- [Node.js] >= 20.0.0 qui inclus le [Node Package Manager][npm]
+- IDE: VS Code avec extensions Eslint, Prettier
+
+## 🎓 Setup du projet
+
+Ce projet est un monorepo géré avec `npm` workspaces et `turbo`.
+
+1. **Installation des dépendances** :
+
+   ```bash
+   npm install
+   ```
+
+2. **Build initial** :
+   ```bash
+   npm run build
+   ```
+
+## 📜 Commandes NPM
+
+| Commande             | Description                                                        |
+| -------------------- | ------------------------------------------------------------------ |
+| `npm run build`      | Compiler tous les packages via Turbo.                              |
+| `npm run lint`       | Analyser les erreurs syntaxiques et les règles de styles.          |
+| `npm run lint.fix`   | Corriger automatiquement les erreurs de lint.                      |
+| `npm run format`     | Vérifier le formatage du code avec Prettier.                       |
+| `npm run format.fix` | Appliquer le formatage Prettier.                                   |
+| `npm run types`      | Analyser la syntaxe du code TypeScript sur l'ensemble du monorepo. |
+
+## 🔒 Architecture
+
+Le projet est organisé en packages :
+
+- [**`@igo2/base-api`**](file:///home/cara12/projects/msp/pig/igo/base-api/packages/base-api) : Utilitaires de base (Base64, UUID, helpers, sanitization, templates).
+- [**`@igo2/fastify`**](file:///home/cara12/projects/msp/pig/igo/base-api/packages/fastify) : Intégrations spécifiques à Fastify (Auth, Database, Logger, Swagger).
+
+## 🌎 Contribution
+
+1. Créer une branche pour votre fonctionnalité ou correction.
+2. Effectuer les changements et s'assurer que le build et les tests passent.
+3. Créer une Merge Request sur GitLab avec une description claire.
+
+## 🧰 Dépannage
+
+- **Problèmes de build Turbo** : Si vous rencontrez des erreurs de cache inattendues, vous pouvez supprimer le dossier `.turbo` à la racine ou dans les packages.
+- **Node version** : Assurez-vous d'utiliser une version >= 20.0.0.
+
+[git]: https://git-scm.com/
+[node.js]: https://nodejs.org/
+[npm]: https://www.npmjs.com/get-npm
