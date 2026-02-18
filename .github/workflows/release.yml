@@ -6,6 +6,12 @@ on:
       - main
       - next
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+  # Allow workflows to publish to GitHub Pages when invoking reusable workflows
+  pages: write
+
 jobs:
   release:
     runs-on: ubuntu-latest
