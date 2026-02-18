@@ -51,8 +51,8 @@ Ce projet est un monorepo géré avec `npm` workspaces et `turbo`.
 
 Le projet est organisé en packages :
 
-- [**`@igo2/base-api`**](file:///home/cara12/projects/msp/pig/igo/base-api/packages/base-api) : Utilitaires de base (Base64, UUID, helpers, sanitization, templates).
-- [**`@igo2/fastify`**](file:///home/cara12/projects/msp/pig/igo/base-api/packages/fastify) : Intégrations spécifiques à Fastify (Auth, Database, Logger, Swagger).
+- [**`@igo2/base-api`**](./packages/base-api/README.md) : Utilitaires de base (Base64, UUID, helpers, sanitization, templates).
+- [**`@igo2/fastify`**](./packages/fastify/README.md) : Intégrations spécifiques à Fastify (Auth, Database, Logger, Swagger).
 
 ## 🌎 Contribution
 
