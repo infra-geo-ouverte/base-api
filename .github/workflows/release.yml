@@ -7,8 +7,10 @@ on:
       - next
 
 permissions:
-  id-token: write  # Required for OIDC
-  contents: read
+  id-token: write # Required for OIDC
+  contents: write
+  issues: write
+  pull-requests: write
   # Allow workflows to publish to GitHub Pages when invoking reusable workflows
   pages: write
 
@@ -42,5 +44,5 @@ jobs:
 
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
