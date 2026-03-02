@@ -1,6 +1,6 @@
 {
   "name": "@igo2/fastify",
-  "version": "1.0.0-next.14",
+  "version": "1.0.0-next.15",
   "description": "Base Api for Fastify",
   "homepage": "https://gitlab.forge.gouv.qc.ca/pig/igo2/base-api/packages/fastapi#readme",
   "repository": {
