@@ -27,7 +27,8 @@
     "format": "prettier packages scripts --check --config .prettierrc",
     "format.fix": "prettier --write packages scripts --check --config .prettierrc",
     "lint": "npm run lint --workspace=packages --if-present",
-    "lint.fix": "npm run lint.fix --workspace=packages --if-present"
+    "lint.fix": "npm run lint.fix --workspace=packages --if-present",
+    "test": "npm run test --workspace=packages --if-present"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.0.0",
