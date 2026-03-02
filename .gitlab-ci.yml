@@ -48,6 +48,12 @@ lint:
     - npm run lint
   interruptible: true
 
+test:
+  stage: quality
+  script:
+    - npm run test
+  interruptible: true
+
 build:
   stage: quality
   script:
