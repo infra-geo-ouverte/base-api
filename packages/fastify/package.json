@@ -1,6 +1,6 @@
 {
   "name": "@igo2/fastify",
-  "version": "3.1.1-next.1",
+  "version": "3.2.0-next.1",
   "description": "Base Api for Fastify",
   "homepage": "https://github.com/infra-geo-ouverte/base-api/packages/fastapi#readme",
   "repository": {
