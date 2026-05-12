@@ -1,29 +1,32 @@
-import { DrizzleConfig } from 'drizzle-orm';
+import { AnyRelations, EmptyRelations } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { withReplicas as withDrizzleReplicas } from 'drizzle-orm/pg-core';
+import {
+  DrizzlePgConfig,
+  withReplicas as withDrizzleReplicas
+} from 'drizzle-orm/pg-core';
 import { Pool } from 'pg';
 
 import { Environments } from '../../../config/config.interface';
 import { DatabaseOrm, DatabaseOrmKind } from '../orm.interface';
 
-type Options<TSchema extends Record<string, unknown> = Record<string, never>> =
-  DrizzleConfig<TSchema> & {
+type Options<TRelations extends AnyRelations = EmptyRelations> =
+  DrizzlePgConfig<TRelations> & {
     environment: Environments;
     withReplicas?: boolean;
   };
 
 export function withDrizzlePg<
-  TSchema extends Record<string, unknown> = Record<string, never>
+  TRelations extends AnyRelations = EmptyRelations
 >({
   withReplicas,
   environment,
   ...config
-}: Options<TSchema>): DatabaseOrm<DatabaseOrmKind.Drizzle> {
+}: Options<TRelations>): DatabaseOrm<DatabaseOrmKind.Drizzle> {
   return {
     kind: DatabaseOrmKind.Drizzle,
     provider: {
       useFactory: (client: Pool, readOnlyClient?: Pool) => {
-        const readWriteClient = drizzle<TSchema>({
+        const readWriteClient = drizzle<TRelations>({
           client,
           ...config
         });

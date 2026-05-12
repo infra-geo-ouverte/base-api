@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["es2022"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "target": "es2022",
     "rootDir": "./",
 
@@ -13,7 +13,8 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": ["node"]
   },
   "exclude": ["node_modules"]
 }

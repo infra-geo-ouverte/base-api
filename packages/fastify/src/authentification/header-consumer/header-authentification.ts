@@ -73,7 +73,7 @@ function formatHeaders(headers: IncomingHttpHeaders) {
     headers[xConsumerGroupsKey] = Value.Decode(
       HEADERS_CONSUMER_SCHEMA['properties'][xConsumerGroupsKey],
       headers[xConsumerGroupsKey]
-    );
+    ) as string[];
   }
   return headers;
 }

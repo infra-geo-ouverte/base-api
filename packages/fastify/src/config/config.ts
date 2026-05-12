@@ -27,9 +27,6 @@ const configPluginFn: ConfigPlugin = async (
     confKey: 'env',
     schema,
     expandEnv: true,
-    dotenv: {
-      quiet: true
-    },
     data: options.defaultValue
   });
 };
