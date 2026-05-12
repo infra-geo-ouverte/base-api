@@ -1,4 +1,5 @@
 export * from './base64';
+export * from './env.utils';
 export * from './object-utils';
 export * from './str-utils';
 export * from './template';
