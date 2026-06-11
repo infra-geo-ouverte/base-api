@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "rootDir": ".",
     "outDir": "../../dist/base-api",
     "declaration": true,
     "declarationMap": false,

@@ -29,8 +29,8 @@ export async function formatPackageJson(packageName: string) {
   delete packageJSON.devDependencies;
   delete packageJSON.workspaces;
 
-  packageJSON.main = 'public-api.js';
-  packageJSON.typings = 'public-api.d.ts';
+  packageJSON.main = './src/public-api.js';
+  packageJSON.typings = './src/public-api.d.ts';
 
   packageJSON.exports = formatExports(packageJSON.exports ?? {});
 
@@ -102,8 +102,8 @@ function formatExports(exports: IPackageJsonExports) {
   // Ensure default export exists
   if (!formatted['.']) {
     formatted['.'] = {
-      types: './index.d.ts',
-      default: './index.js'
+      types: './src/index.d.ts',
+      default: './src/index.js'
     };
   }
 
@@ -117,12 +117,6 @@ function convertPath(path: string) {
 
   // Replace .ts with .js
   let converted = path.replace(/\.ts$/, '.js');
-
-  // Remove /src/ from path
-  converted = converted.replace(/\/src\//, '/');
-
-  // Handle src/ at the beginning
-  converted = converted.replace(/^src\//, '');
 
   return converted;
 }

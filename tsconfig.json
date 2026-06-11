@@ -8,6 +8,8 @@
     "preserveConstEnums": true,
     "forceConsistentCasingInFileNames": true,
 
+    "types": ["node"],
+
     "paths": {
       "@igo2/base-api": [
         "./packages/base-api/src/public-api"
